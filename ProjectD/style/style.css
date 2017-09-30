@@ -1,0 +1,115 @@
+body {
+	margin: 0;
+	background: #000; 
+}
+
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+	background-size: cover;
+	transition: 1s opacity;
+}
+
+#fond { 
+	border:solid white;
+	border-width:10px 0 10px 0;
+	background: rgba(0,0,0,0.8);
+	margin-top:15%;
+	height:50%;
+}
+
+#check{
+	margin-left:5%;
+	background:white;
+	height:100%;
+	width:200px;
+	background: -webkit-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* Standard syntax */
+
+}
+
+.left{
+	width: 0;
+	height: 0;
+	border:solid;
+	border-color: transparent white transparent transparent;
+	border-width: 75px 129.9px 75px 0;
+	position:fixed;
+	right: 0;
+	top: 50%;
+    -webkit-animation: move 3s linear forwards;
+    animation: move 3s linear forwards;
+}
+
+.right{
+	width: 0;
+	height: 0;
+	border:solid;
+	border-color: transparent transparent transparent white;
+	border-width: 75px 0 75px 129.9px;
+	position:fixed;
+	right: 0;
+	top: 50%;
+    -webkit-animation: move 3s linear forwards;
+    animation: move 3s linear forwards;
+}
+
+.up{
+	width: 0;
+	height: 0;
+	border:solid;
+	border-color: transparent transparent white transparent;
+	border-width: 0 75px 129.9px 75px;
+	position:fixed;
+	right: 0;
+	top: 50%;
+    -webkit-animation: move 3s linear forwards;
+    animation: move 3s linear forwards;
+}
+
+.down{
+	width: 0;
+	height: 0;
+	border:solid;
+	border-color: white transparent transparent transparent;
+	border-width: 129.9px 75px 0 75px;
+	position:fixed;
+	right: 0;
+	top: 50%;
+    -webkit-animation: move 3s linear forwards;
+    animation: move 3s linear forwards;
+}
+
+.push{
+	background:white;
+	border-radius:50%;
+	width:129.9px;
+	height:129.9px;
+	border:4px solid black; 
+	position:fixed;
+	right: 0;
+	top: 50%;
+    -webkit-animation: move 3s linear forwards;
+    animation: move 3s linear forwards;
+}
+    
+.clap{
+	
+}
+
+@keyframes move {
+    100% { right: calc(100%); }
+}
+@-webkit-keyframes move {
+    100% { right: calc(100%); }
+}
+
