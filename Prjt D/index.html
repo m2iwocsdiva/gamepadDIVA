@@ -5,13 +5,18 @@
 </head>
 <body>
 	<video playsinline autoplay muted>
-		<source type="video/mp4" src="video/senbonzakura.mp4" />
+		<source type="video/mp4" src="ressources/senbonzakura/senbonzakura.mp4" />
 	</video>
 	<audio playsinline autoplay>
-		<source type="audio/mpeg" src="musique/senbonzakura.mp3">
+		<source type="audio/mpeg" src="ressources/senbonzakura/senbonzakura.mp3">
 	</audio>
 	<div id="fond">
 		<div id="check"></div>
 	</div>
 </body>
+<script>
 
+document.body.onkeyup = function(e){	
+	testinginput(e.keyCode);
+}
+</script>
