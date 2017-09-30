@@ -106,6 +106,27 @@ video {
 	
 }
 
+.push.good{
+	background:#00ccff!important;
+	border-color:#00ccff!important;
+}
+
+.up.good{
+	border-color:transparent transparent #00ccff transparent!important;
+}
+
+.down.good{
+	border-color:#00ccff transparent transparent transparent!important;
+}
+
+.left.good{
+	border-color:transparent #00ccff transparent transparent!important;
+}
+
+.right.good{
+	border-color:transparent transparent transparent #00ccff!important;
+}
+
 @keyframes move {
     100% { right: calc(100%); }
 }

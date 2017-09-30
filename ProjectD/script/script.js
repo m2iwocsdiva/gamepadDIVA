@@ -34,6 +34,7 @@ function createinput(){
 }
 
 function deleteinput(){
+	if(!document.getElementById(id2).classList.contains("good")){for(var i=0;i<6;i++){miss(i);}}
 	document.getElementById(id2).remove();
 }
 
@@ -43,23 +44,23 @@ function testinginput(key){
 	if(isCollide(b1,b2)){
 		switch(key){
 			case 90:
-				if(b2.classList.contains("up")) {for(var i=0;i<6;i++){correct(i);}}
+				if(b2.classList.contains("up")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 83:
-				if(b2.classList.contains("down")) {for(var i=0;i<6;i++){correct(i);}}
+				if(b2.classList.contains("down")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 68:
-				if(b2.classList.contains("right")) {for(var i=0;i<6;i++){correct(i);}}
+				if(b2.classList.contains("right")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 81:
-				if(b2.classList.contains("left")) {for(var i=0;i<6;i++){correct(i);}}
+				if(b2.classList.contains("left")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 32:
-				if(b2.classList.contains("push")) {for(var i=0;i<6;i++){correct(i);}}
+				if(b2.classList.contains("push")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			default:
@@ -67,8 +68,24 @@ function testinginput(key){
 		}
 	}
 	else{
-		for(var i=0;i<6;i++){
-			incorrect(i);
+		switch(key){
+			case 90:
+				for(var i=0;i<6;i++){incorrect(i)};
+				break;
+			case 83:
+				for(var i=0;i<6;i++){incorrect(i)};
+				break;
+			case 68:
+				for(var i=0;i<6;i++){incorrect(i)};
+				break;
+			case 81:
+				for(var i=0;i<6;i++){incorrect(i)};
+				break;
+			case 32:
+				for(var i=0;i<6;i++){incorrect(i)};
+				break;
+			default:
+				break;
 		}
 	}
 }
@@ -98,6 +115,19 @@ function incorrect(i){
 		setTimeout(function(){
 			document.getElementById("fond").style.borderColor = "red";
 			document.getElementById("check").style.backgroundColor ="red";
+		},150*i);}
+	else{
+		setTimeout(function(){
+			document.getElementById("fond").style.borderColor = "white";
+			document.getElementById("check").style.backgroundColor ="rgba(0,0,0,0.6)";
+		},150*i);}
+}
+
+function miss(i){
+	if (i%2 ==0){
+		setTimeout(function(){
+			document.getElementById("fond").style.borderColor = "grey";
+			document.getElementById("check").style.backgroundColor ="grey";
 		},150*i);}
 	else{
 		setTimeout(function(){
