@@ -41,9 +41,12 @@ function createinput(){
 }
 
 function deleteinput(){
-	if(!document.getElementById(id2).classList.contains("good")){for(var i=0;i<6;i++){miss(i);}}
+	if($(id2).hasClass("good")){for(var i=0;i<6;i++){miss(i);}}
 	document.getElementById(id2).remove();
+	// $(id2).remove(); //Ne marche pas ?
 }
+
+
 
 function testinginput(key){
 
@@ -53,23 +56,23 @@ function testinginput(key){
 	if(isCollide(b1,b2)){
 		switch(key){
 			case 90:
-				if(b2.classList.contains("arrow-up")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-up")) {addScore(1); for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 83:
-				if(b2.classList.contains("arrow-down")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-down")) {addScore(1); for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 68:
-				if(b2.classList.contains("arrow-right")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-right")) {addScore(1); for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 81:
-				if(b2.classList.contains("arrow-left")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-left")) {addScore(1); for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 32:
-				if(b2.classList.contains("push")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("push")) {addScore(1); for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			default:
@@ -143,4 +146,11 @@ function miss(i){
 			document.getElementById("fond").style.borderColor = "white";
 			document.getElementById("check").style.backgroundColor ="rgba(0,0,0,0.6)";
 		},150*i);}
+}
+
+/* Score */
+function addScore(s){
+	var sc = parseInt($(score).text());
+	sc = sc + s;
+	$(score).text(sc);
 }
