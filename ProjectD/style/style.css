@@ -37,12 +37,15 @@ video {
 
 }
 
-.left{
-	width: 0;
-	height: 0;
-	border:solid;
-	border-color: transparent white transparent transparent;
-	border-width: 75px 129.9px 75px 0;
+/* --------- */
+/* Encapsuler les éléments -doit ce trouver au centre de la zone*/
+.box {
+	width: 170px;
+	height: 170px;
+	border: 5px solid #B000B5; /*DEBUG*/
+
+	/*border-width: 100px 100px 100px 100px;*/
+
 	position:fixed;
 	right: 0;
 	top: 50%;
@@ -50,45 +53,36 @@ video {
     animation: move 3s linear forwards;
 }
 
-.right{
-	width: 0;
-	height: 0;
-	border:solid;
-	border-color: transparent transparent transparent white;
-	border-width: 75px 0 75px 129.9px;
-	position:fixed;
-	right: 0;
-	top: 50%;
-    -webkit-animation: move 3s linear forwards;
-    animation: move 3s linear forwards;
+#arrow {
+	--pos-x1: 0;
+	--pos-x2: calc(100% - (1/3 * 100%));
+	--pos-y1: calc(1/3 * 100%);
+	--pos-y2: calc(2/3 * 100%);
+	
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(45deg, #FB1, #BADA55); 
+	
+	clip-path: polygon(
+		var(--pos-x1) var(--pos-y1),
+		var(--pos-x2) var(--pos-y1),
+		var(--pos-x2) 0,
+		100% 50%,
+		var(--pos-x2) 100%,
+		var(--pos-x2) var(--pos-y2),
+		var(--pos-x1) var(--pos-y2)
+	);
 }
 
-.up{
-	width: 0;
-	height: 0;
-	border:solid;
-	border-color: transparent transparent white transparent;
-	border-width: 0 75px 129.9px 75px;
-	position:fixed;
-	right: 0;
-	top: 50%;
-    -webkit-animation: move 3s linear forwards;
-    animation: move 3s linear forwards;
-}
+.arrow-right { -webkit-transform: rotateZ(0deg); }
 
-.down{
-	width: 0;
-	height: 0;
-	border:solid;
-	border-color: white transparent transparent transparent;
-	border-width: 129.9px 75px 0 75px;
-	position:fixed;
-	right: 0;
-	top: 50%;
-    -webkit-animation: move 3s linear forwards;
-    animation: move 3s linear forwards;
-}
+.arrow-left { -webkit-transform: rotateZ(180deg); }
 
+.arrow-up { -webkit-transform: rotateZ(270deg); }
+
+.arrow-down { -webkit-transform: rotateZ(90deg); }
+
+/* A changer */
 .push{
 	background:white;
 	border-radius:50%;
@@ -101,10 +95,13 @@ video {
     -webkit-animation: move 3s linear forwards;
     animation: move 3s linear forwards;
 }
-    
+
+/* A changer */
 .clap{
 	
 }
+
+/* --------- */
 
 .push.good{
 	background:#00ccff!important;

@@ -1,5 +1,6 @@
 var id1=1;
 var id2=1;
+
 jQuery(document).ready(function(){
 	var id1=1;
 	setInterval(create,1000);
@@ -11,7 +12,8 @@ function create(){
 
 	if(id1>=3) id1=1;
 	else 	id1++;
-}	
+}
+
 function del(){
 	deleteinput(id2)
 		if(id2>=3) id2=1;
@@ -19,18 +21,23 @@ function del(){
 }	
 
 function createinput(){
+
 	var input = document.createElement("div");
 	var rand = Math.floor(Math.random() * 5) + 1  
 	switch(rand){
-		case 1: input.className += "up";break;
-		case 2: input.className += "down";break;
-		case 3: input.className += "left";break;
-		case 4: input.className += "right";break;
+		case 1: input.className += "arrow-up"; input.id="arrow"; break;
+		case 2: input.className += "arrow-down"; input.id="arrow"; break;
+		case 3: input.className += "arrow-left"; input.id="arrow"; break;
+		case 4: input.className += "arrow-right"; input.id="arrow"; break;
 		case 5: input.className += "push";break;
 		//case 6: input.className += "clap";break;
 	}
-	input.id=id1;
-	document.body.appendChild(input);
+	
+	var box = document.createElement("div");
+	box.classList.add('box');
+	box.id = id1;
+	
+	document.getElementById("fond").appendChild(box).appendChild(input);
 }
 
 function deleteinput(){
@@ -39,24 +46,26 @@ function deleteinput(){
 }
 
 function testinginput(key){
+
 	var b1 = document.getElementById("check");
-	var b2 = document.getElementById(id2);
+	var b2 = document.getElementById(id2).firstChild;
+	
 	if(isCollide(b1,b2)){
 		switch(key){
 			case 90:
-				if(b2.classList.contains("up")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-up")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 83:
-				if(b2.classList.contains("down")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-down")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 68:
-				if(b2.classList.contains("right")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-right")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 81:
-				if(b2.classList.contains("left")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
+				if(b2.classList.contains("arrow-left")) {for(var i=0;i<6;i++){correct(i);}b2.className +=" good";}
 				else {for(var i=0;i<6;i++){incorrect(i);}}
 				break;
 			case 32:
