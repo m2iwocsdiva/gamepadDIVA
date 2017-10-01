@@ -1,11 +1,31 @@
 var id1=1;
 var id2=1;
+var jsonFile;
+var bpm;
 
 jQuery(document).ready(function(){
+	chargement("Ressources/senbonzakura/beatmap.json");
 	var id1=1;
 	setInterval(create,1000);
 	setTimeout(function(){setInterval(del,1000);},3000);
 })
+
+function chargement(path){
+	//Verouiller le tmeps que sa charge
+
+	$.getJSON(path, function(data){
+		console.log(data); // debug
+		
+		console.log(data.BPM);
+		
+		bpm = data.BPM;
+		
+	}).fail(function() {
+    console.log( "error" ); //erreur
+  });
+  
+  console.log( "bpm 0 :" + bpm );
+}
 
 function create(){
 	createinput(id1)
