@@ -205,10 +205,10 @@ function isMissed(){
 }
 
 function correct(objet){
-	id++;
 	chime.play();
 	objet.parentElement.className +=" good";
 	objet.remove();
+	id++;
 	document.getElementById("message").innerHTML = "GOOD";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function(){document.getElementById("message").style.visibility = "hidden";},500);
