@@ -21,8 +21,8 @@ video {
 	border:solid white;
 	border-width:10px 0 10px 0;
 	background: rgba(0,0,0,0.8);
-	margin-top:15%;
-	height:50%;
+	margin-top:25%;
+	height:30%;
 }
 
 #check{
@@ -51,16 +51,26 @@ video {
 	text-align: center;
 }
 
+#message {
+	font-size: 600% ;
+	font-weight: bold; 
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	visibility: hidden;
+	color:white;
+}
+
 /* --------- */
 /* Encapsuler les éléments - doit ce trouver au centre de la zone - modif dynaque de la vitesse*/
 .box {
 	width: 5vw;
 	height: 5vw; /*vh*/
-	/*border: 5px solid #B000B5; /*DEBUG*/
+	//border: 5px solid #B000B5; /*DEBUG*/
 
 	position:fixed;
 	right: 0;
-	top: 50%;
+	top: 68%;
     -webkit-animation: move 3s linear forwards;
     animation: move 3s linear forwards;
 }
@@ -73,7 +83,7 @@ video {
 	
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(45deg, #FB1, #BADA55); 
+	background: linear-gradient(45deg, white, white); 
 	
 	clip-path: polygon(
 		var(--pos-x1) var(--pos-y1),
@@ -100,36 +110,12 @@ video {
 	border-radius:50%;
 	width: 100%;
 	height: 100%;
-	border: 2px solid #679403; 
 }
 
 
 /* A changer */
 .clap{
 	
-}
-
-/* --------- */
-
-.push.good{
-	background:#00ccff!important;
-	border-color:#00ccff!important;
-}
-
-.up.good{
-	border-color:transparent transparent #00ccff transparent!important;
-}
-
-.down.good{
-	border-color:#00ccff transparent transparent transparent!important;
-}
-
-.left.good{
-	border-color:transparent #00ccff transparent transparent!important;
-}
-
-.right.good{
-	border-color:transparent transparent transparent #00ccff!important;
 }
 
 @keyframes move {
