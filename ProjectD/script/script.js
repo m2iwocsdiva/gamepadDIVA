@@ -82,7 +82,7 @@ function start(){
 	audio.play();
 
 	create();
-
+	setTimeout(function(){setInterval(isMissed,1)},beatmap[0].t*250*60/bpm);
 	video.onended = function() { //Fin de la vidéo. Affichage de l'image
 		//alert("The video has ended"); //DEBUG
 	};
@@ -91,17 +91,13 @@ function start(){
 		alert("The audio has ended"); //DEBUG
 	};
 }
-/*function cycle(){
-	create();
-	setTimeout(function(){del();},3000);
-}*/
 
 function create(){
-	waitTime=beatmap[iteration].t*250;
+	waitTime=beatmap[iteration].t*250*60/bpm;
 	setTimeout(function(){
-		console.log(beatmap[iteration].i);
+		//console.log(beatmap[iteration].i);
 		iteration++;
-		if(iteration<bpm){
+		if(iteration<1000){
 			createinput(beatmap[iteration].i,iteration);
 			deleteinput(iteration);
 			create();
@@ -111,14 +107,13 @@ function create(){
 
 function createinput(x,i){
 	
-	
 		var input = document.createElement("div");
 		switch(x){
 			case "u": input.className += "arrow-up"; input.id="arrow"; break;
 			case "d": input.className += "arrow-down"; input.id="arrow"; break;
 			case "l": input.className += "arrow-left"; input.id="arrow"; break;
 			case "r": input.className += "arrow-right"; input.id="arrow"; break;
-			case "p": input.className += "push";break;
+			case "p": input.className += "push"; break;
 			default: break;
 		}
 		var box = document.createElement("div");
@@ -131,7 +126,7 @@ function createinput(x,i){
 
 function deleteinput(i){
 	setTimeout(function(){
-		if(!document.getElementById(i).classList.contains("good"))miss();
+		//if(!document.getElementById(i).classList.contains("good"))miss();
 		document.getElementById(i).remove();
 	},timerTaverse);
 	
@@ -198,7 +193,15 @@ function isCollide(a, b) {
 	var rect2 = b.getBoundingClientRect();
 	var hitpoint1= (rect1.left+rect1.right)/2
 	var hitpoint2 = (rect2.left+rect2.right)/2
-	if(hitpoint1-65<hitpoint2 && hitpoint1+65>hitpoint2){return true}
+	if(hitpoint1-100<hitpoint2 && hitpoint1+100>hitpoint2){return true}
+}
+
+function isMissed(){	
+	var rect1 = document.getElementById("check").getBoundingClientRect();
+	var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
+	var hitpoint1 = (rect1.left+rect1.right)/2;
+	var hitpoint2 = (rect2.left+rect2.right)/2;
+	if (hitpoint1-100 > hitpoint2)miss();
 }
 
 function correct(objet){

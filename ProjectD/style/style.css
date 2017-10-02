@@ -18,8 +18,8 @@ video {
 }
 
 #fond { 
-	border:solid white;
-	border-width:10px 0 10px 0;
+	border-top: 1vh solid white;
+	border-bottom: 1vh solid white;
 	background: rgba(0,0,0,0.8);
 	margin-top:25%;
 	height:30%;
@@ -29,7 +29,7 @@ video {
 	margin-left:5%;
 	background:white;
 	height:100%;
-	width:200px;
+	width:15vh;
 	background: -webkit-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Safari 5.1 to 6.0 */
 	background: -o-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Firefox 3.6 to 15 */
