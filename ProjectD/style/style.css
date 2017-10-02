@@ -56,7 +56,7 @@ video {
 .box {
 	width: 5vw;
 	height: 5vw; /*vh*/
-	border: 5px solid #B000B5; /*DEBUG*/
+	/*border: 5px solid #B000B5; /*DEBUG*/
 
 	position:fixed;
 	right: 0;

@@ -1,30 +1,86 @@
 var id1=1;
 var id2=1;
-var jsonFile;
+
+/* Options */
+var volume = 0.5;
+var playvideo = true;
+/* */
+
+var beatmap;
 var bpm;
+var audio;
+var video;
+
+/* TODO */
+/*
+	- Supprimer les imputs valider
+*/
+/********/
 
 jQuery(document).ready(function(){
-	chargement("Ressources/senbonzakura/beatmap.json");
-	var id1=1;
-	setInterval(create,1000);
-	setTimeout(function(){setInterval(del,1000);},3000);
+	chargement("Ressources/senbonzakura");
+	
 })
 
 function chargement(path){
-	//Verouiller le tmeps que sa charge
 
-	$.getJSON(path, function(data){
-		console.log(data); // debug
-		
-		console.log(data.BPM);
+	//Lancer l'écran de chargement
+
+	$.getJSON(path + "/beatmap.json", function(data){
+		console.log(data); // DEBUG
+
+		//Rajouter nom de la chanson sur le chargement
 		
 		bpm = data.BPM;
+		beatmap = data.beatmap;
+		
+		/* Audio */
+		audio = document.createElement("AUDIO");
+		audio.src = path + "/" + data.Audio;
+		audio.volume = volume;
+		
+		//Rajouter le ptemps de la chanson (audio.duration) 
+		
+		/* Video */
+		if(playvideo){
+			video = document.createElement("video");
+			video.src = path + "/" + data.Video;
+			video.muted = true;
+			video.type = "video/mp4";
+			if(data.loop == true) video.loop = true;
+			
+			document.body.appendChild(video);
+		}
+		
+	}).done(function() {
+		
+		//Enlever l'écran de chargement
+		// Verifier si les éléments sont bien charger ?
+		
+		start();
 		
 	}).fail(function() {
     console.log( "error" ); //erreur
   });
   
-  console.log( "bpm 0 :" + bpm );
+}
+
+function start(){
+
+	if(playvideo) video.play();
+	audio.play();
+
+	var id1=1;
+	setInterval(create,1000);
+	setTimeout(function(){setInterval(del,1000);},3000);
+	
+	video.onended = function() { //Fin de la vidéo. Affichage de l'image
+		//alert("The video has ended"); //DEBUG
+	};
+	
+	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
+		alert("The audio has ended"); //DEBUG
+	};
 }
 
 function create(){
