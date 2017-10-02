@@ -2,14 +2,17 @@ var id1=1;
 var id2=1;
 
 /* Options */
-var volume = 0.5;
+var volumeSong = 0.5;
+var volumeChime = 0.6;
 var playvideo = true;
+var pathchime = "audio/chimes/clap.mp3";
 /* */
 
 var beatmap;
 var bpm;
 var audio;
 var video;
+var chime;
 
 /* TODO */
 /*
@@ -37,7 +40,13 @@ function chargement(path){
 		/* Audio */
 		audio = document.createElement("AUDIO");
 		audio.src = path + "/" + data.Audio;
-		audio.volume = volume;
+		audio.volume = volumeSong;
+		
+		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
+		
+		chime = document.createElement("AUDIO");
+		chime.src = pathchime;
+		chime.volume = volumeChime;
 		
 		//Rajouter le ptemps de la chanson (audio.duration) 
 		
@@ -226,6 +235,8 @@ function miss(i){
 
 /* Score */
 function addScore(s){
+	chime.play(); //a changer d'endroit
+
 	var sc = parseInt($(score).text());
 	sc = sc + s;
 	$(score).text(sc);
