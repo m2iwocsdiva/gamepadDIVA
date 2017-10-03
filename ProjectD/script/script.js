@@ -34,6 +34,7 @@ function chargement(path){
 		console.log(data); // DEBUG
 
 		//Rajouter nom de la chanson sur le chargement
+		$("#nom").html(data.Name);
 		
 		bpm = data.BPM;
 		beatmap = data.beatmap;
@@ -50,8 +51,10 @@ function chargement(path){
 			chimes[i].volume = volumeChime
 		}
 		
-		
 		//Rajouter le ptemps de la chanson (audio.duration) 
+		audio.addEventListener('loadedmetadata',function(){
+			$("#duree").html((audio.duration/60)+":"+(audio.duration%60));
+		});
 		
 		/* Video */
 		if(playvideo){
@@ -68,6 +71,7 @@ function chargement(path){
 		
 		//Enlever l'écran de chargement
 		//Verifier si les éléments sont bien charger ?
+		$("body").css("background-image","none");
 		
 		start();
 		
