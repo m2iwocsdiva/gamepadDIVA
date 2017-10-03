@@ -31,7 +31,8 @@ jQuery(document).ready(function(){
 function chargement(path){
 
 	//Lancer l'écran de chargement
-
+	$("body").css("background-image",'url("images/loading.gif")');
+	
 	$.getJSON(path + "/beatmap.json", function(data){
 		console.log(data); // DEBUG
 
