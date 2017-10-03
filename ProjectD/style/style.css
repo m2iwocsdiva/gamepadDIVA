@@ -64,8 +64,8 @@ video {
 /* --------- */
 /* Encapsuler les éléments - doit ce trouver au centre de la zone - modif dynaque de la vitesse*/
 .box {
-	width: 5vw;
-	height: 5vw; /*vh*/
+	width: 2vw;
+	height: 2vw; /*vh*/
 	//border: 5px solid #B000B5; /*DEBUG*/
 
 	position:fixed;

@@ -5,7 +5,7 @@ var waitTime;
 var iteration=0;
 
 /* Options */
-var volumeSong = 0.5;
+var volumeSong = 0;
 var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
@@ -16,12 +16,9 @@ var beatmap;
 var bpm;
 var audio;
 var video;
-var chime;
-/* TODO */
-/*
-	- Supprimer les imputs valider
-*/
-/********/
+
+var chimes = new Array();
+var cptChime = 0;
 
 jQuery(document).ready(function(){
 	chargement("Ressources/senbonzakura");
@@ -46,9 +43,12 @@ function chargement(path){
 		
 		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
 		
-		chime = document.createElement("AUDIO");
-		chime.src = pathchime;
-		chime.volume = volumeChime;
+		for(var i = 0; i < 10; i++){ //TODO Ajuster et ajouter variable
+			chimes[i] = document.createElement("AUDIO");
+			chimes[i].src = pathchime;
+			chimes[i].volume = volumeChime
+		}
+		
 		
 		//Rajouter le ptemps de la chanson (audio.duration) 
 		
@@ -81,7 +81,7 @@ function start(){
 	if(playvideo) video.play();
 	audio.play();
 
-	create();
+	create(0,1);
 	setTimeout(function(){setInterval(isMissed,1)},beatmap[0].t*250*60/bpm);
 	video.onended = function() { //Fin de la vidéo. Affichage de l'image
 		//alert("The video has ended"); //DEBUG
@@ -92,17 +92,39 @@ function start(){
 	};
 }
 
-function create(){
-	waitTime=beatmap[iteration].t*250*60/bpm;
-	setTimeout(function(){
-		//console.log(beatmap[iteration].i);
-		iteration++;
-		if(iteration<1000){
-			createinput(beatmap[iteration].i,iteration);
-			deleteinput(iteration);
-			create();
+function create(it,i){
+
+	console.log("Debug " + beatmap.length);
+
+	if(it < beatmap.length){
+		
+		var tmp = beatmap[it];
+		
+		if(isNaN(tmp) == true)
+		{
+		
+			createinput(tmp,i);
+			
+			it++;
+			i++;
+			
+			create(it,i);
 		}
-	},waitTime);
+		else
+		{
+			
+			waitTime = tmp*250*60/bpm;
+			
+			it++;
+			
+			setTimeout(function(){
+				create(it,i);
+			},waitTime);
+			
+		}
+		
+		
+	}
 }
 
 function createinput(x,i){
@@ -205,7 +227,13 @@ function isMissed(){
 }
 
 function correct(objet){
-	chime.play();
+
+	chimes[cptChime].play();
+	cptChime++;
+	if(cptChime == 10){
+		cptChime = 0;
+	}
+	
 	objet.parentElement.className +=" good";
 	objet.remove();
 	id++;
@@ -218,6 +246,12 @@ function correct(objet){
 }
 
 function incorrect(){
+
+	//Test jq
+	/*$(message).text("FAIL");
+	$(message).show();
+	setTimeout(function(){ $(message).hide(); }, 500);*/
+
 	document.getElementById("message").innerHTML = "FAIL";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function(){document.getElementById("message").style.visibility = "hidden";},500);
@@ -226,6 +260,11 @@ function incorrect(){
 
 function miss(){
 	id++;
+	//Test jq
+	/*$(message).text("MISS");
+	$(message).show();
+	setTimeout(function(){ $(message).hide(); }, 500);*/
+
 	document.getElementById("message").innerHTML = "MISS";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function(){document.getElementById("message").style.visibility = "hidden";},500);
@@ -234,7 +273,8 @@ function miss(){
 
 /* Score */
 function addScore(s){
+
 	sc = parseInt($(score).text());
-	sc = sc + s*multiplicateur;
+	sc = sc + s/**multiplicateur*/;
 	$(score).text(sc);
 }
