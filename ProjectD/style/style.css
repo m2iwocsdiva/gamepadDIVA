@@ -23,15 +23,18 @@ video {
 	border-top: 1vh solid white;
 	border-bottom: 1vh solid white;
 	background: rgba(0,0,0,0.8);
-	margin-top:25%;
-	height:30%;
+	margin-top:30%;
+	height:15vh;
+	display: block;
+	position: relative;
 }
 
 #check{
 	margin-left:5%;
 	background:white;
 	height:100%;
-	width:15vh;
+	width:20vh;
+	position: absolute;
 	background: -webkit-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Safari 5.1 to 6.0 */
 	background: -o-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(left, rgba(0,0,0,0.6) , rgba(255,255,255,0.9), rgba(0,0,0,0.6)); /* For Firefox 3.6 to 15 */
@@ -81,9 +84,11 @@ video {
 	height: 2vw; /*vh*/
 	//border: 5px solid #B000B5; /*DEBUG*/
 
-	position:fixed;
+	position:absolute;
+	top: 35%;
+   	vertical-align:middle;
+	line-height: normal;
 	right: 0;
-	top: 68%;
     -webkit-animation: move 3s linear forwards;
     animation: move 3s linear forwards;
 }

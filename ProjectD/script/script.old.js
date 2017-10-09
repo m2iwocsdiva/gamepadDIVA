@@ -5,7 +5,7 @@ var waitTime;
 var iteration=0;
 
 /* Options */
-var volumeSong = 0;
+var volumeSong = 1;
 var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
@@ -39,24 +39,21 @@ function chargement(path){
 		bpm = data.BPM;
 		beatmap = data.beatmap;
 		/* Audio */
-		audio = document.createElement("AUDIO");
+		audio = document.createElement("audio");
 		audio.src = path + "/" + data.Audio;
 		audio.volume = volumeSong;
 		
 		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
 		
 		for(var i = 0; i < 10; i++){ //TODO Ajuster et ajouter variable
-			chimes[i] = document.createElement("AUDIO");
+			chimes[i] = document.createElement("audio");
 			chimes[i].src = pathchime;
 			chimes[i].volume = volumeChime
 		}
 		
 		//Rajouter le ptemps de la chanson (audio.duration) 
 		audio.addEventListener('loadedmetadata',function(){
-			var duree      = Math.round(audio.duration);
-			var nbMinutes  = Math.trunc(duree/60);
-			var nbSecondes = duree%60;
-			$("#duree").html(nbMinutes+":"+(nbSecondes<10?"0":"")+nbSecondes);
+			$("#duree").html((audio.duration/60)+":"+(audio.duration%60));
 		});
 		
 		/* Video */
@@ -174,24 +171,24 @@ function testinginput(key){
 	if(isCollide(b1,b2)){
 		switch(key){
 			case 90:
-				if(b2.classList.contains("arrow-up")) {correct(b2);}
-				else {incorrect();}
+				if(b2.classList.contains("arrow-up")) { correct(b2); }
+				else {incorrect(); }
 				break;
 			case 83:
-				if(b2.classList.contains("arrow-down")) {correct(b2);}
-				else {incorrect();}
+				if(b2.classList.contains("arrow-down")) {correct(b2); }
+				else {incorrect(); }
 				break;
 			case 68:
-				if(b2.classList.contains("arrow-right")) {correct(b2);}
-				else {incorrect();}
+				if(b2.classList.contains("arrow-right")) {correct(b2); }
+				else {incorrect(); }
 				break;
 			case 81:
-				if(b2.classList.contains("arrow-left")) {correct(b2);}
-				else {incorrect();}
+				if(b2.classList.contains("arrow-left")) {correct(b2); }
+				else {incorrect(); }
 				break;
 			case 32:
-				if(b2.classList.contains("push")) {correct(b2);}
-				else {incorrect();}
+				if(b2.classList.contains("push")) {correct(b2); }
+				else {incorrect(); }
 				break;
 			default:
 				break;
@@ -253,9 +250,8 @@ function correct(objet){
 	multiplicateur++;
 
 	$("#logLED").load("http://localhost:8000/led/on-green"); setTimeout(function(){
-  	$("#logLED").load("http://localhost:8000/led/off");
+	  $("#logLED").load("http://localhost:8000/led/off");
 	}, 200);
-			
 }
 
 function incorrect(){
@@ -288,7 +284,7 @@ function miss(){
 	multiplicateur=1;
 
 	$("#logLED").load("http://localhost:8000/led/on-grey"); setTimeout(function(){
-  	$("#logLED").load("http://localhost:8000/led/off");
+	  $("#logLED").load("http://localhost:8000/led/off");
 	}, 200);
 }
 
