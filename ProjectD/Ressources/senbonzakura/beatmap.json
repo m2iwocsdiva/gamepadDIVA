@@ -1,0 +1,20 @@
+{
+	"Name":"Senbonzakura",
+	"Video":"senbonzakura.mp4",
+	"loop":false,
+	"Audio":"senbonzakura.mp3",
+	"BPM":154,
+	"beatmap":[
+		4,
+		"u", 2,
+		"d", 2,
+		"p", 1.25,
+		"p", 1.25,
+		"p", 1.50,
+		"u", 2,
+		"d", 2,
+		"p", 1.25,
+		"p", 1.25,
+		"p", 1.50
+	]
+}

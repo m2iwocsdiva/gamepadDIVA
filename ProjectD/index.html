@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="style/style.css" media="all" />
+		<script src="script/jquery.min.js"></script>
+		<script src="script/script.js"></script>
+	</head>
+	<body>
+
+		<div class="score">Score : <span id="score">0</span></div>
+		
+		<div id="info">
+			<p>Nom : <span id="nom"></span></p>
+			<p>Durée : <span id="duree"></span></p>
+		</div>
+		
+		<div id="fond">
+			<div id="check"></div>
+		</div>
+		
+		<div id="message"></div>
+	</body>
+	<script>
+
+	document.body.onkeyup = function(e){	
+		testinginput(e.keyCode);
+	}
+	</script>
+</html>
