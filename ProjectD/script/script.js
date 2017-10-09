@@ -53,7 +53,10 @@ function chargement(path){
 		
 		//Rajouter le ptemps de la chanson (audio.duration) 
 		audio.addEventListener('loadedmetadata',function(){
-			$("#duree").html((audio.duration/60)+":"+(audio.duration%60));
+			var duree      = Math.round(audio.duration);
+			var nbMinutes  = Math.trunc(duree/60);
+			var nbSecondes = duree%60;
+			$("#duree").html(nbMinutes+":"+(nbSecondes<10?"0":"")+nbSecondes);
 		});
 		
 		/* Video */
