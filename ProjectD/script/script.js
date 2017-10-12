@@ -228,11 +228,13 @@ function isCollide(a, b) {
 }
 
 function isMissed(){	
-	var rect1 = document.getElementById("check").getBoundingClientRect();
-	var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
-	var hitpoint1 = (rect1.left+rect1.right)/2;
-	var hitpoint2 = (rect2.left+rect2.right)/2;
-	if (hitpoint1-100 > hitpoint2)miss();
+	if(document.getElementById(id)!=null){
+		var rect1 = document.getElementById("check").getBoundingClientRect();
+		var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
+		var hitpoint1 = (rect1.left+rect1.right)/2;
+		var hitpoint2 = (rect2.left+rect2.right)/2;
+		if (hitpoint1-100 > hitpoint2)miss();
+	}
 }
 
 function correct(objet){
