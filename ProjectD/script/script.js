@@ -98,7 +98,8 @@ function start(){
 	
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 		alert("The audio has ended"); //DEBUG
-		window.location.href = "resultat.html?score="+sc;
+		//window.location.href = "resultat.html?score="+sc;
+		afficherResultat(0/* nombre de misses à modifier */);
 	};
 }
 
