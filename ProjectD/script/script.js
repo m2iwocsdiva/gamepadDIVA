@@ -9,7 +9,8 @@ var volumeSong = 0;
 var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
-var timerTaverse = 3000;
+var timerTraverse = 3000;
+var tolerance = $(window).width()*0.1;
 /* */
 
 var beatmap;
@@ -113,7 +114,7 @@ function create(it,i){
 		{
 		
 			createinput(tmp,i);
-			
+
 			it++;
 			i++;
 			
@@ -152,16 +153,11 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-
+		setTimeout(function(){deleteinput(i);},timerTraverse);
 }
 
 function deleteinput(i){
-	setTimeout(function(){
-		//if(!document.getElementById(i).classList.contains("good"))miss();
-		document.getElementById(i).remove();
-	},timerTaverse);
-	
-	// $(id2).remove(); //Ne marche pas ?
+	document.getElementById(i).remove();
 }
 
 
@@ -224,7 +220,7 @@ function isCollide(a, b) {
 	var rect2 = b.getBoundingClientRect();
 	var hitpoint1= (rect1.left+rect1.right)/2
 	var hitpoint2 = (rect2.left+rect2.right)/2
-	if(hitpoint1-100<hitpoint2 && hitpoint1+100>hitpoint2){return true}
+	if(hitpoint1-tolerance<hitpoint2 && hitpoint1+tolerance>hitpoint2){return true}
 }
 
 function isMissed(){	
@@ -233,7 +229,7 @@ function isMissed(){
 		var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
 		var hitpoint1 = (rect1.left+rect1.right)/2;
 		var hitpoint2 = (rect2.left+rect2.right)/2;
-		if (hitpoint1-100 > hitpoint2)miss();
+		if (hitpoint1-tolerance > hitpoint2)miss();
 	}
 }
 
