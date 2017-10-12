@@ -67,7 +67,7 @@ video {
 	color:white;
 }
 
-#info {
+.info, .liens {
 	font-size: 100%;
 	font-weight: bold; 
 	font-family: "Cursif";
