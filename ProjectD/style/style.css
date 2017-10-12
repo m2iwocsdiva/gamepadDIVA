@@ -82,7 +82,7 @@ video {
 .box {
 	width: 2vw;
 	height: 2vw; /*vh*/
-	//border: 5px solid #B000B5; /*DEBUG*/
+	/*border: 5px solid #B000B5; /*DEBUG*/
 
 	position:absolute;
 	top: 35%;

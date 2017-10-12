@@ -10,7 +10,7 @@ var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
 var timerTraverse = 3000;
-var tolerance = $(window).width()*0.1;
+var tolerance = $(window).width()*0.07;
 /* */
 
 var beatmap;
