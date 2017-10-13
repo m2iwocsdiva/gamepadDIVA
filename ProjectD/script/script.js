@@ -166,16 +166,10 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-		//deleteinput(i);
-}
+		setTimeout(function(){deleteinput(i);},timerTraverse);
 
 function deleteinput(i){
-	setTimeout(function(){
-		//if(!document.getElementById(i).classList.contains("good"))miss();
-		document.getElementById(i).remove();
-	},timerTaverse);
-	
-	// $(id2).remove(); //Ne marche pas ?
+	document.getElementById(i).remove();
 }
 
 
