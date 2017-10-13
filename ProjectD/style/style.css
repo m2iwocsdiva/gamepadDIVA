@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background: #000;
+	/*background: #000;*/
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
@@ -99,6 +99,8 @@ video {
 	--pos-y1: calc(1/3 * 100%);
 	--pos-y2: calc(2/3 * 100%);
 	
+	background: #000;
+
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(45deg, white, white); 
