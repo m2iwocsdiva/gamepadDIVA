@@ -165,10 +165,11 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-		//deleteinput(i);
+		//setTimeout(function(){deleteinput(i);},timerTaverse);
 }
 
 function deleteinput(i){
+	setTimeout(function(){
 		document.getElementById(i).remove();
 }
 
