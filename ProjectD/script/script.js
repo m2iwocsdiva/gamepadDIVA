@@ -169,7 +169,6 @@ function createinput(x,i){
 }
 
 function deleteinput(i){
-	setTimeout(function(){
 		document.getElementById(i).remove();
 }
 
