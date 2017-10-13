@@ -116,11 +116,6 @@ function start(){
 
 function create(it,i){
 
-<<<<<<< HEAD
-=======
-	//console.log("Debug " + beatmap.length);//DEBUG
-
->>>>>>> d7d6b5e9313313612fe415290ffe4137bff40acc
 	if(it < beatmap.length){
 		
 		var tmp = beatmap[it];
