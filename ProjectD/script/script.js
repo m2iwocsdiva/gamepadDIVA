@@ -169,12 +169,7 @@ function createinput(x,i){
 }
 
 function deleteinput(i){
-	setTimeout(function(){
-		//if(!document.getElementById(i).classList.contains("good"))miss();
 		document.getElementById(i).remove();
-	},timerTaverse);
-	
-	// $(id2).remove(); //Ne marche pas ?
 }
 
 
