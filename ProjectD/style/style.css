@@ -102,7 +102,6 @@ video {
 	width: 100%;
 	height: 100%;
 	background: linear-gradient(45deg, white, white); 
-	
 	clip-path: polygon(
 		var(--pos-x1) var(--pos-y1),
 		var(--pos-x2) var(--pos-y1),
@@ -130,12 +129,6 @@ video {
 	height: 100%;
 }
 
-
-/* A changer */
-.clap{
-	
-}
-
 @keyframes move {
     100% { right: calc(100%); }
 }
@@ -143,3 +136,8 @@ video {
     100% { right: calc(100%); }
 }
 
+.validate{
+	height: 200%;
+  	width: 200%;
+  transition: height, width linear 1s;
+}
