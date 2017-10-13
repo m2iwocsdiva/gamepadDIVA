@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<!--link rel="stylesheet" type="text/css" href="style/style.css" media="all" /-->
-		<script src="script/jquery.min.js"></script>
-		<!--script src="script/resultat.js"></script-->
-		<!--script src="script/script.js"></script-->
-	</head>
-	<body>
-		<input type="file" name="ressources" id="inputRessources" />
-		
-	</body>
+<div id="Doom">
+	<input type="file" name="ressources" id="inputRessources" />
+
+	<input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
+
 	<script>
-	$("#inputRessources").change(function(){
-		console.log($("#inputRessources")[0].files[0]);
-	});
+		$("#inputRessources").change(function(){
+			console.log($("#inputRessources")[0].files[0]);
+		});
+
+
+		function doFunction(){
+			$( "#Doom" ).load( "game.html" );
+		}
+		/*//- Using a function pointer:
+		document.getElementById("clickMe").onclick = doFunction;
+
+		//- Using an anonymous function:
+		document.getElementById("clickMe").onclick = function () { $( "#Doom" ).load( "game.html" ); };*/
 	</script>
-</html>
+</div>

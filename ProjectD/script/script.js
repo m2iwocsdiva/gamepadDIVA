@@ -10,6 +10,7 @@ var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
 var timerTaverse = 3000;
+var tolerance = $(window).width()*0.08;
 /* */
 
 var beatmap;
@@ -84,6 +85,19 @@ function chargement(path){
   
 }
 
+function afficherResultat(nbMisses)
+{
+	$("#fond, #message, audio, video").remove();
+	
+	$("body").append("<div class=\"info\"></div>");
+	
+	/* affichage du nombre de cibles manquées */
+	
+	$(".info").append("<p id=\"pMisses\">Manqués : </p>");
+	$("#pManques").append("<span id=\"misses\"></span>");
+	$("#misses").html(nbMisses);
+}
+
 function start(){
 
 	if(playvideo) video.play();
@@ -96,14 +110,13 @@ function start(){
 	};
 	
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-		alert("The audio has ended"); //DEBUG
-		window.location.href = "resultat.html?score="+sc;
+		afficherResultat(0/* nombre de misses à modifier */);
 	};
 }
 
 function create(it,i){
 
-	console.log("Debug " + beatmap.length);
+	//console.log("Debug " + beatmap.length);//DEBUG
 
 	if(it < beatmap.length){
 		
@@ -152,16 +165,11 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-
+		//setTimeout(function(){deleteinput(i);},timerTaverse);
 }
 
 function deleteinput(i){
-	setTimeout(function(){
-		//if(!document.getElementById(i).classList.contains("good"))miss();
 		document.getElementById(i).remove();
-	},timerTaverse);
-	
-	// $(id2).remove(); //Ne marche pas ?
 }
 
 
@@ -197,7 +205,7 @@ function testinginput(key){
 				break;
 		}
 	}
-	else{
+	/*else{
 		switch(key){
 			case 90:
 				incorrect();
@@ -217,14 +225,14 @@ function testinginput(key){
 			default:
 				break;
 		}
-	}
+	}*/
 }
 function isCollide(a, b) {
 	var rect1 = a.getBoundingClientRect();
 	var rect2 = b.getBoundingClientRect();
 	var hitpoint1= (rect1.left+rect1.right)/2
 	var hitpoint2 = (rect2.left+rect2.right)/2
-	if(hitpoint1-100<hitpoint2 && hitpoint1+100>hitpoint2){return true}
+	if(hitpoint1-tolerance<hitpoint2 && hitpoint1+tolerance>hitpoint2){return true}
 }
 
 function isMissed(){	
@@ -233,7 +241,7 @@ function isMissed(){
 		var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
 		var hitpoint1 = (rect1.left+rect1.right)/2;
 		var hitpoint2 = (rect2.left+rect2.right)/2;
-		if (hitpoint1-100 > hitpoint2)miss();
+		if (hitpoint1-tolerance > hitpoint2)miss();
 	}
 }
 
@@ -244,10 +252,11 @@ function correct(objet){
 	if(cptChime == 10){
 		cptChime = 0;
 	}
-	
-	objet.parentElement.className +=" good";
-	objet.remove();
 	id++;
+	objet.parentElement.className +=" good";
+	objet.className += " validate";
+	//objet.remove();
+	
 	document.getElementById("message").innerHTML = "GOOD";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function(){document.getElementById("message").style.visibility = "hidden";},500);
