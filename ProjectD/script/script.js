@@ -110,8 +110,7 @@ function start(){
 	};
 	
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-	//window.location.href = "resultat.html?score="+sc;
-	afficherResultat(0/* nombre de misses à modifier */);
+		afficherResultat(0/* nombre de misses à modifier */);
 	};
 }
 
@@ -166,10 +165,16 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-		setTimeout(function(){deleteinput(i);},timerTraverse);
+		//deleteinput(i);
+}
 
 function deleteinput(i){
-	document.getElementById(i).remove();
+	setTimeout(function(){
+		//if(!document.getElementById(i).classList.contains("good"))miss();
+		document.getElementById(i).remove();
+	},timerTaverse);
+	
+	// $(id2).remove(); //Ne marche pas ?
 }
 
 
