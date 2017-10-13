@@ -137,7 +137,12 @@ video {
 }
 
 .validate{
-	height: 200%;
-  	width: 200%;
-  transition: height, width linear 1s;
+	height: 200% !important;
+  	width: 200% !important;
+  		border-radius:50%!important;
+  	transition: move 3s linear backward;
+  	transition: height,  linear 0.5s;
+  	transition: width, linear 0.5s;
+  	opacity:0;
 }
+

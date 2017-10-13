@@ -116,8 +116,6 @@ function start(){
 
 function create(it,i){
 
-	console.log("Debug " + beatmap.length);
-
 	if(it < beatmap.length){
 		
 		var tmp = beatmap[it];
@@ -165,7 +163,7 @@ function createinput(x,i){
 		box.id = i;
 		
 		document.getElementById("fond").appendChild(box).appendChild(input);
-		//setTimeout(function(){deleteinput(i);},timerTaverse);
+		setTimeout(function(){deleteinput(i);},timerTaverse);
 }
 
 function deleteinput(i){
@@ -254,9 +252,9 @@ function correct(objet){
 	}
 	id++;
 	objet.parentElement.className +=" good";
+	objet.className -= "box";
 	objet.className += " validate";
-	//objet.remove();
-	
+	setTimeout(function(){objet.remove();},500);
 	document.getElementById("message").innerHTML = "GOOD";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function(){document.getElementById("message").style.visibility = "hidden";},500);
