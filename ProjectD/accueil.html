@@ -10,7 +10,7 @@
 
 		function doFunction(){
 			lireZip();
-			$( "#Doom" ).load( "game.html" );
+			//$( "#Doom" ).load( "game.html" );
 		}
 		
 		/* lecture de l'archive .zip fournie par l'utilisateur */
@@ -42,6 +42,12 @@
 						reader.close(function()
 						{
 							console.log(fichierValide);
+							
+							/* redirection vers le jeu si le fichier fourni est valide */
+							if ( fichierValide )
+								$( "#Doom" ).load( "game.html" );
+								
+							// TODO Transmettre chemin des ressources vers script.js (fonction de chargement)
 						});
 					});
 				},
