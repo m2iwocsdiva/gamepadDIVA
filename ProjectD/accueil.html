@@ -12,34 +12,34 @@
 			lireZip();
 			//$( "#Doom" ).load( "game.html" );
 		}
-		
-		/* lecture de l'archive .zip fournie par l'utilisateur */
 				
 		zip.workerScriptsPath = "lib/";
 		
+		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
 		function lireZip()
 		{
-			let blob = $("#inputRessources")[0].files[0];
+			let blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
 			let fichierValide = false;
 						
-			if ( blob.name.endsWith(".zip") )
+			if ( blob.name.endsWith(".zip") ) // s'il s'agit bien d'une archive .zip
 			{		
 				zip.createReader(new zip.BlobReader(blob),function(reader)
 				{
 					reader.getEntries(function(entries)
 					{
-						if (entries.length)
+						if (entries.length) // s'il y a au moins un fichier dans l'archive
 						{
-							entries.forEach(function(entry)
+							entries.forEach(function(entry) // pour chaque fichier contenu dans l'archive
 							{
 								console.log(entry.filename);
 								
-								if ( entry.filename.endsWith("beatmap.json") )
+								/* vérification de la présence du fichier beatmap.json */
+								if ( !fichierValide && entry.filename.endsWith("beatmap.json") )
 									fichierValide = true;
 							});
 						}
 
-						reader.close(function()
+						reader.close(function() // après la lecture du contenu de l'archive
 						{
 							console.log(fichierValide);
 							
