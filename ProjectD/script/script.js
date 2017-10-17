@@ -110,7 +110,7 @@ function start(){
 	};
 	
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-		afficherResultat(0/* nombre de misses à modifier */);
+		$( "#Doom" ).load( "resultat.html" );
 	};
 }
 
