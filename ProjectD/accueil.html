@@ -8,10 +8,49 @@
 			console.log($("#inputRessources")[0].files[0]);
 		});
 
-
 		function doFunction(){
+			lireZip();
 			$( "#Doom" ).load( "game.html" );
 		}
+		
+		/* lecture de l'archive .zip fournie par l'utilisateur */
+				
+		zip.workerScriptsPath = "lib/";
+		
+		function lireZip()
+		{
+			let blob = $("#inputRessources")[0].files[0];
+			let fichierValide = false;
+						
+			if ( blob.name.endsWith(".zip") )
+			{		
+				zip.createReader(new zip.BlobReader(blob),function(reader)
+				{
+					reader.getEntries(function(entries)
+					{
+						if (entries.length)
+						{
+							entries.forEach(function(entry)
+							{
+								console.log(entry.filename);
+								
+								if ( entry.filename.endsWith("beatmap.json") )
+									fichierValide = true;
+							});
+						}
+
+						reader.close(function()
+						{
+							console.log(fichierValide);
+						});
+					});
+				},
+				function(error){});
+			}
+			
+			return fichierValide;
+		};
+		
 		/*//- Using a function pointer:
 		document.getElementById("clickMe").onclick = doFunction;
 
