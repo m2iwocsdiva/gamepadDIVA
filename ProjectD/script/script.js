@@ -21,10 +21,11 @@ var video;
 var chimes = new Array();
 var cptChime = 0;
 
+/*
 jQuery(document).ready(function(){
 	chargement("Ressources/senbonzakura");
-	
 })
+*/
 
 function chargement(path){
 

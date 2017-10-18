@@ -1,17 +1,77 @@
 <div id="Doom">
 	<input type="file" name="ressources" id="inputRessources" />
 
-	<input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
+	<!--input id="clickMe" type="button" value="clickme" onclick="doFunction();" /-->
 
 	<script>
 		$("#inputRessources").change(function(){
 			console.log($("#inputRessources")[0].files[0]);
+			lireZip();
 		});
 
-
-		function doFunction(){
-			$( "#Doom" ).load( "game.html" );
+		//function doFunction(){
+			//$( "#Doom" ).load( "game.html" );
+		//}
+		
+		var blob;
+		
+		function afficherBoutonLancement()
+		{
+			$("#Doom").append('<input id="lancement" type="button" value="Commencer" onclick="lancerJeu();" />');
 		}
+		
+		function lancerJeu()
+		{
+			//console.log(blob.mozFullPath);
+		
+			$( "#Doom" ).load( "game.html" );
+			//chargement(blob);
+		}
+		
+		zip.workerScriptsPath = "lib/";
+		
+		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
+		function lireZip()
+		{
+			blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
+			let fichierValide = false;
+						
+			if ( blob.name.endsWith(".zip") ) // s'il s'agit bien d'une archive .zip
+			{		
+				zip.createReader(new zip.BlobReader(blob),function(reader)
+				{
+					reader.getEntries(function(entries)
+					{
+						if (entries.length) // s'il y a au moins un fichier dans l'archive
+						{
+							entries.forEach(function(entry) // pour chaque fichier contenu dans l'archive
+							{
+								console.log(entry.filename);
+								
+								/* vérification de la présence du fichier beatmap.json */
+								if ( !fichierValide && entry.filename.endsWith("beatmap.json") )
+									fichierValide = true;
+							});
+						}
+
+						reader.close(function() // après la lecture du contenu de l'archive
+						{
+							console.log(fichierValide);
+							
+							/* redirection vers le jeu si le fichier fourni est valide */
+							if ( fichierValide )
+								afficherBoutonLancement();
+								
+							// TODO Transmettre chemin des ressources vers script.js (fonction de chargement)
+						});
+					});
+				},
+				function(error){});
+			}
+			
+			return fichierValide;
+		};
+		
 		/*//- Using a function pointer:
 		document.getElementById("clickMe").onclick = doFunction;
 
