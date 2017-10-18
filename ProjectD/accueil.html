@@ -1,24 +1,39 @@
 <div id="Doom">
 	<input type="file" name="ressources" id="inputRessources" />
 
-	<input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
+	<!--input id="clickMe" type="button" value="clickme" onclick="doFunction();" /-->
 
 	<script>
 		$("#inputRessources").change(function(){
 			console.log($("#inputRessources")[0].files[0]);
+			lireZip();
 		});
 
-		function doFunction(){
-			lireZip();
+		//function doFunction(){
 			//$( "#Doom" ).load( "game.html" );
+		//}
+		
+		var blob;
+		
+		function afficherBoutonLancement()
+		{
+			$("#Doom").append('<input id="lancement" type="button" value="Commencer" onclick="lancerJeu();" />');
 		}
-				
+		
+		function lancerJeu()
+		{
+			//console.log(blob.mozFullPath);
+		
+			$( "#Doom" ).load( "game.html" );
+			//chargement(blob);
+		}
+		
 		zip.workerScriptsPath = "lib/";
 		
 		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
 		function lireZip()
 		{
-			let blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
+			blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
 			let fichierValide = false;
 						
 			if ( blob.name.endsWith(".zip") ) // s'il s'agit bien d'une archive .zip
@@ -45,7 +60,7 @@
 							
 							/* redirection vers le jeu si le fichier fourni est valide */
 							if ( fichierValide )
-								$( "#Doom" ).load( "game.html" );
+								afficherBoutonLancement();
 								
 							// TODO Transmettre chemin des ressources vers script.js (fonction de chargement)
 						});
