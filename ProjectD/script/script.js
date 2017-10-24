@@ -21,18 +21,35 @@ var video;
 var chimes = new Array();
 var cptChime = 0;
 
-/*
 jQuery(document).ready(function(){
-	chargement("Ressources/senbonzakura");
-})
-*/
+	chargement();
+});
 
-function chargement(path){
+function chargement(){
 
 	//Lancer l'écran de chargement
 	$("body").css("background-image",'url("images/loading.gif")');
 	
-	$.getJSON(path + "/beatmap.json", function(data){
+	//$.getJSON(path + "/beatmap.json", function(data){
+	//$.getJSON(jsonBeatmap, function(data){
+	
+	//var data = $.parseJSON(jsonBeatmap);
+	//console.log(jsonBeatmap);
+	//console.log(a);
+	
+	//var url = window.URL.createObjectURL(new Blob(jsonBeatmap));
+	var url = window.URL.createObjectURL(jsonBeatmap);
+	console.log("url : "+url);
+	
+	var path = "";
+	
+	// NOTES :
+	// transmission du fichier beatmap.js fonctionne
+	// reste à récupérer fichiers .mp3 et .mp4
+		
+	//$.getJSON(url + "/beatmap.json", function(data){
+	$.getJSON(url,function(data){
+	
 		console.log(data); // DEBUG
 
 		//Rajouter nom de la chanson sur le chargement
