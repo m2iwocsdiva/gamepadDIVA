@@ -1,19 +1,20 @@
 <div id="Doom">
 	<h1>Project D</h1>
-	<!--input type="file" name="ressources" id="inputRessources" /-->
-
-	<!--input id="clickMe" type="button" value="clickme" onclick="doFunction();" /-->
 	<ul class="menu" id="menu1">
 			<li class="bouton"><a onclick="jmenu2();">Jouer</a></li>
 			<li class="bouton"><a onclick="jmenu3();">Option</a></li>
 	</ul>
 	<ul class="menu" id="menu2">
-		<li><input type="file" name="ressources" id="inputRessources" /></li>
+		<li class="bouton"><a style="color:grey" id="start">Commencer</a></li>
+		<li class="bouton">
+			<input type="file" name="ressources" id="inputRessources" class="file_selector"/>
+			<label tabindex="0" for="ressources" class="file_label">Selection</label>
+		</li>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
 	</ul>
 	<ul class="menu" id="menu3">
 		<li class="bouton"><a onclick="">Volume - musique</a></li>
-		<li class="bouton"><a onclick="">Volume - validation</a></li>
+		<li class="bouton"><a onclick="">Volume - action</a></li>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
 	</ul>
 
@@ -43,7 +44,9 @@
 		
 		function afficherBoutonLancement()
 		{
-			$("#Doom").append('<input id="lancement" type="button" value="Commencer" onclick="lancerJeu();" />');
+			//$("#Doom").append('<input id="lancement" type="button" value="Commencer" onclick="lancerJeu();" />');
+			$("#start").css("color", "white");
+			$("#start").click(lancerJeu);
 		}
 		
 		function lancerJeu()

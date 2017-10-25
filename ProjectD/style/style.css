@@ -128,6 +128,19 @@ li.bouton:hover::after{
 	src: url("../fonts/Cursif.ttf");
 }
 
+.file_selector{
+	position: absolute;
+  	width: 225px;
+  	opacity: 0;
+  	padding: 14px 50%;
+  	cursor: pointer;
+}
+.file_label{
+	color:white;
+	padding-left:25%;
+	text-decoration:none;
+}
+
 .score {
 	font-size: 200% ;
 	font-weight: bold; 
