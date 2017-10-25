@@ -1,7 +1,21 @@
 <div id="Doom">
-	<input type="file" name="ressources" id="inputRessources" />
+	<h1>Project D</h1>
+	<!--input type="file" name="ressources" id="inputRessources" /-->
 
 	<!--input id="clickMe" type="button" value="clickme" onclick="doFunction();" /-->
+	<ul class="menu" id="menu1">
+			<li class="bouton"><a onclick="jmenu2();">Jouer</a></li>
+			<li class="bouton"><a onclick="jmenu3();">Option</a></li>
+	</ul>
+	<ul class="menu" id="menu2">
+		<li><input type="file" name="ressources" id="inputRessources" /></li>
+		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
+	</ul>
+	<ul class="menu" id="menu3">
+		<li class="bouton"><a onclick="">Volume - musique</a></li>
+		<li class="bouton"><a onclick="">Volume - validation</a></li>
+		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
+	</ul>
 
 	<script>
 		$("#inputRessources").change(function(){
@@ -12,7 +26,19 @@
 		//function doFunction(){
 			//$( "#Doom" ).load( "game.html" );
 		//}
-		
+		function jmenu1(){
+			document.getElementById("menu1").style.display="block";
+			document.getElementById("menu2").style.display="none";
+			document.getElementById("menu3").style.display="none";
+		};
+		function jmenu2(){
+			document.getElementById("menu1").style.display="none";
+			document.getElementById("menu2").style.display="block";
+		};
+		function jmenu3(){
+			document.getElementById("menu1").style.display="none";
+			document.getElementById("menu3").style.display="block";
+		};
 		//var blob;
 		
 		function afficherBoutonLancement()

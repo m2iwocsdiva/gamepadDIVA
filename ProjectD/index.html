@@ -20,6 +20,10 @@
 
 	<script>
 		$( "#Doom" ).load( "accueil.html" );
+		function fond(){
+				document.body.style.backgroundImage="url(images/fond.png)";
+		}
+		fond();	
 		document.body.onkeyup = function(e){	
 			testinginput(e.keyCode);
 		}
