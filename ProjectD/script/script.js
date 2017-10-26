@@ -39,6 +39,8 @@ function chargement(){
 	
 	//var url = window.URL.createObjectURL(new Blob(jsonBeatmap));
 	var url = window.URL.createObjectURL(jsonBeatmap);
+	var urlVideo = window.URL.createObjectURL(blobVideo);
+	var urlAudio = window.URL.createObjectURL(blobAudio);
 	console.log("url : "+url);
 	
 	var path = "";
@@ -59,7 +61,8 @@ function chargement(){
 		beatmap = data.beatmap;
 		/* Audio */
 		audio = document.createElement("AUDIO");
-		audio.src = path + "/" + data.Audio;
+		//audio.src = path + "/" + data.Audio;
+		audio.src = urlAudio;		
 		audio.volume = volumeSong;
 		
 		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
@@ -81,7 +84,8 @@ function chargement(){
 		/* Video */
 		if(playvideo){
 			video = document.createElement("video");
-			video.src = path + "/" + data.Video;
+			video.src = urlVideo;
+			//video.src = path + "/" + data.Video;
 			video.muted = false;
 			video.type = "video/mp4";
 			if(data.loop == true) video.loop = true;
