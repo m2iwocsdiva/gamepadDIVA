@@ -1,4 +1,3 @@
-<div id="Doom">
 	<h1>Project D</h1>
 	<ul class="menu" id="menu1">
 			<li class="bouton"><a onclick="jmenu2();">Jouer</a></li>
@@ -7,8 +6,8 @@
 	<ul class="menu" id="menu2">
 		<li class="bouton"><a style="color:grey" id="start">Commencer</a></li>
 		<li class="bouton">
-			<input type="file" name="ressources" id="inputRessources" class="file_selector"/>
-			<label tabindex="0" for="ressources" class="file_label">Selection</label>
+			<input type="file" name="ressources" accept=".zip" id="inputRessources" class="file_selector"/>
+			<label tabindex="0" for="ressources" id="inputLabel" class="file_label">Selection</label>
 		</li>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
 	</ul>
@@ -23,7 +22,6 @@
 			console.log($("#inputRessources")[0].files[0]);
 			lireZip();
 		});
-
 		//function doFunction(){
 			//$( "#Doom" ).load( "game.html" );
 		//}
@@ -44,8 +42,11 @@
 		
 		function afficherBoutonLancement()
 		{
-			//$("#Doom").append('<input id="lancement" type="button" value="Commencer" onclick="lancerJeu();" />');
+			$("#start").html("Commencer");
 			$("#start").css("color", "white");
+			$("#inputLabel").css("color", "white");
+			$("#inputLabel").html("Selection");
+			$("#inputRessources").prop('disabled', false);
 			$("#start").click(lancerJeu);
 		}
 		
@@ -56,15 +57,19 @@
 			$( "#Doom" ).load( "game.html" );
 			//chargement(blob);
 		}
-		
 		zip.workerScriptsPath = "lib/";
 		
 		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
 		function lireZip()
 		{
+			$("#start").css("color", "grey");
+			$("#start").off("click");
+			$("#inputLabel").html("Verification");
+			$("#inputLabel").css("color", "grey");
+			$("#inputRessources").prop('disabled', true);
+
 			var blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
 			let fichierValide = false;
-						
 			if ( blob.name.endsWith(".zip") ) // s'il s'agit bien d'une archive .zip
 			{		
 				zip.createReader(new zip.BlobReader(blob),function(reader)
@@ -92,100 +97,64 @@
 							
 							/* vérification de la présence du fichier beatmap.json, du son et de la vidéo */
 							if ( entryBeatmap != null && entryAudio != null && entryVideo != null )
-							{
-								console.log("aaa");
-							
+							{						
 								/* récupération du contenu des fichiers sous forme de Blobs */
-																
+								$("#inputLabel").append(" .").delay(3000).queue(function (next) {
+								    $(this).append(".").delay(3000).queue(function (next) {
+								    	$(this).append('.');
+								    	next();
+								    });	
+								    next();
+								});		
 								entryBeatmap.getData(new zip.BlobWriter(),function(blob1)
 								{
+									
 									jsonBeatmap = blob1;
 									console.log("jsonBeatmap accueil.html "+jsonBeatmap);
-									
 									entryAudio.getData(new zip.BlobWriter(),function(blob2)
 									{
+										
 										blobAudio = blob2;
 										console.log("blobAudio accueil.html "+blobAudio);
-										
 										entryVideo.getData(new zip.BlobWriter(),function(blob3)
 										{
 											blobVideo = blob3;
 											console.log("blobVideo accueil.html "+blobVideo);
-											
 											fichierValide = true;
-											
+							
 											reader.close(function() // après la lecture du contenu de l'archive
 											{
 												console.log(fichierValide);
 							
 												/* redirection vers le jeu si le fichier fourni est valide */
-												if ( fichierValide )
+												if ( fichierValide ){
 													afficherBoutonLancement();
-								
-												// TODO Transmettre chemin des ressources vers script.js (fonction de chargement)
+												}
 											});
 										});
 									});
 								});
 							}
-									
-							/*												
-							entries[0].getData(new zip.BlobWriter(),function(blob)
+							else 
 							{
-								//console.log(text);
-								jsonBeatmap = blob;
-								
-								console.log("jsonBeatmap accueil.html "+jsonBeatmap);
-								
-								console.log(file);
-							});
-							*/
-						
-							/*entries.forEach(function(entry) // pour chaque fichier contenu dans l'archive
-							{
-								console.log(entry.filename);
-								
-								if ( entry.filename.endsWith("beatmap.json") )
-								{
-									console.log("a");
-								
-									entry.getData(new zip.TextWriter(),function(text)
-									{
-										//console.log(text);
-										jsonBeatmap = text;
-										console.log("jsonBeatmap accueil.html "+jsonBeatmap);
-									});
-									
-									var file;
-									entry.getData(new zip.BlobWriter(),function(blob)
-									{
-										//console.log(text);
-										jsonBeatmap = blob;
-										
-										console.log("jsonBeatmap accueil.html "+jsonBeatmap);
-										console.log(jsonBeatmap);
-										
-										console.log(file);
-									});
-								}*/
-								
-								/* vérification de la présence du fichier beatmap.json */
-								//if ( !fichierValide && entry.filename.endsWith("beatmap.json") )
-									//fichierValide = true;
-							//});
+								$("#start").html("Fichier non lisible");
+								$("#inputLabel").html("Selection");
+								$("#inputLabel").css("color", "white");
+								$("#inputRessources").prop('disabled', false);
+							}
 						}
 					});
 				},
 				function(error){});
 			}
+			else 
+				{
+					$("#start").html("Fichier non lisible");
+					$("#inputLabel").html("Selection");
+					$("#inputLabel").css("color", "white");
+					$("#inputRessources").prop('disabled', false);
+				}
 			
 			return fichierValide;
 		};
-		
-		/*//- Using a function pointer:
-		document.getElementById("clickMe").onclick = doFunction;
-
-		//- Using an anonymous function:
-		document.getElementById("clickMe").onclick = function () { $( "#Doom" ).load( "game.html" ); };*/
 	</script>
-</div>
