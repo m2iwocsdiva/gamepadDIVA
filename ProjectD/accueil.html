@@ -6,7 +6,7 @@
 	<ul class="menu" id="menu2">
 		<li class="bouton"><a style="color:grey" id="start">Commencer</a></li>
 		<li class="bouton">
-			<input type="file" name="ressources" id="inputRessources" class="file_selector"/>
+			<input type="file" name="ressources" accept=".zip" id="inputRessources" class="file_selector"/>
 			<label tabindex="0" for="ressources" id="inputLabel" class="file_label">Selection</label>
 		</li>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
@@ -99,7 +99,7 @@
 							if ( entryBeatmap != null && entryAudio != null && entryVideo != null )
 							{						
 								/* récupération du contenu des fichiers sous forme de Blobs */
-								$("#inputLabel").append(".").delay(3000).queue(function (next) {
+								$("#inputLabel").append(" .").delay(3000).queue(function (next) {
 								    $(this).append(".").delay(3000).queue(function (next) {
 								    	$(this).append('.');
 								    	next();

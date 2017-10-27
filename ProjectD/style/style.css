@@ -59,6 +59,8 @@ li.bouton{
 	font-family: Cyberverse;
 	width:250%;
 	display: block;
+	min-width: 20vw;
+	max-width: 30vw;
 }
 
 a{
