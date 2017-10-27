@@ -17,6 +17,9 @@ var five = require("johnny-five"),
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+var tar = require('tar-fs');
+var fs = require('fs');
+
 board.on("ready", function() {
   console.log("### Board ready!");
 
@@ -41,6 +44,8 @@ board.on("ready", function() {
 
             client.emit('rgb', data);
             client.broadcast.emit('rgb', data);
+
+            fs.createReadStream('my-tarfile.tar').pipe(tar.extract('./tar-gz-files'))
       });
 
       var joystick = new five.Joystick({
@@ -50,31 +55,33 @@ board.on("ready", function() {
       });
 
       joystick.on("change", function() {
-        
+
+	//console.log("x="+this.x ,"y="+this.y);	
+
         // Gauche
         if(this.x <= -0.8) {
-          console.log("GAUCHE");
+         // console.log("GAUCHE");
           client.emit('Jgauche', data);
           client.broadcast.emit('Jgauche', data);
         }
 
         // Droite
         if(this.x >= 0.8) {
-          console.log("DROITE");
+         // console.log("DROITE");
           client.emit('Jdroite', data);
           client.broadcast.emit('Jdroite', data);
         }
 
         // Haut
         if(this.y <= -0.8) {
-          console.log("HAUT");
+         // console.log("HAUT");
           client.emit('Jhaut', data);
           client.broadcast.emit('Jhaut', data);
         }
 
         // Bas
         if(this.y >= 0.8) {
-          console.log("BAS");
+         // console.log("BAS");
           client.emit('Jbas', data);
           client.broadcast.emit('Jbas', data);
         }
@@ -88,6 +95,9 @@ board.on("ready", function() {
 });
 
 app.get('/led/:mode', function (req, res) {
+
+  res.header('Access-Control-Allow-Origin', '*');
+
   if(ledMulti) {
     var status = "OK";
     switch(req.params.mode) {

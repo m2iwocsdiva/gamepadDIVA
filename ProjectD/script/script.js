@@ -44,6 +44,11 @@ function chargement(){
 	console.log("url : "+url);
 	
 	var path = "";
+
+	blobVideo.onload = function() {
+
+		console.log("Vidéo chargé");
+	}
 	
 	// NOTES :
 	// transmission du fichier beatmap.js fonctionne
@@ -62,7 +67,7 @@ function chargement(){
 		/* Audio */
 		audio = document.createElement("AUDIO");
 		//audio.src = path + "/" + data.Audio;
-		audio.src = urlAudio;		
+		audio.src = urlAudio;			
 		audio.volume = volumeSong;
 		
 		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
@@ -85,6 +90,7 @@ function chargement(){
 		if(playvideo){
 			video = document.createElement("video");
 			video.src = urlVideo;
+			video.preload = "";
 			//video.src = path + "/" + data.Video;
 			video.muted = false;
 			video.type = "video/mp4";
