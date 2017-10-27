@@ -17,7 +17,6 @@ var five = require("johnny-five"),
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-var tar = require('tar-fs');
 var fs = require('fs');
 
 board.on("ready", function() {

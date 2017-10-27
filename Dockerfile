@@ -5,20 +5,22 @@ FROM debian
 
 # INSTALL base
 RUN apt-get update
-RUN apt-get -y install php-cli
-RUN apt-get install -y nodejs npm
-# javascript-common
+RUN apt-get -y install php-cli curl gnupg2
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get -y install nodejs
 
 #Diva
 RUN mkdir -p /var/www/html
 COPY ./ProjectD /var/www/html
 
 #Node.js
-RUN cd /var/www/html/script
-RUN npm init
+RUN npm install /var/www/html/script johnny-five express http socket.io fs
 
 EXPOSE 80
 
+RUN echo '#!/bin/bash \nphp -S 0.0.0.0:80 & \nnode /var/www/html/script/node-arduino.js' >> /init.sh
+RUN chmod 777 init.sh
+
 WORKDIR /var/www/html
-CMD php -S 0.0.0.0:80
-CMD node /var/www/html/script/node-arduino.js
+CMD /init.sh
