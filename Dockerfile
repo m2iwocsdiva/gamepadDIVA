@@ -1,26 +1,22 @@
 # ProjectD
 
-FROM debian
-#COPY ./public-html/ /usr/local/apache2/htdocs/
-
-# INSTALL base
+FROM node
 RUN apt-get update
-RUN apt-get -y install php-cli curl gnupg2
+RUN apt-get -y install apache2
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get -y install nodejs
-
-#Diva
 RUN mkdir -p /var/www/html
 COPY ./ProjectD /var/www/html
 
 #Node.js
-RUN npm install /var/www/html/script johnny-five express http socket.io fs
+WORKDIR "/var/www/html/script"
+RUN npm install
+
+WORKDIR "/"
+RUN echo '#!/bin/bash \nchmod 666 /dev/ttyACM0 \n/etc/init.d/apache2 start \nchmod -R 777 /var/www/html \ncd /var/www/html/script/ \nnode node-arduino.js \n/bin/bash ' >> /init.sh
+RUN chmod 777 init.sh
 
 EXPOSE 80
-
-RUN echo '#!/bin/bash \nphp -S 0.0.0.0:80 & \nnode /var/www/html/script/node-arduino.js' >> /init.sh
-RUN chmod 777 init.sh
+USER root
 
 WORKDIR /var/www/html
 CMD /init.sh

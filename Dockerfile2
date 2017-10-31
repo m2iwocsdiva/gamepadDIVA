@@ -1,0 +1,33 @@
+# ProjectD
+
+FROM debian
+#COPY ./public-html/ /usr/local/apache2/htdocs/
+
+# INSTALL base
+RUN apt-get update
+RUN apt-get -y install php-cli curl gnupg2
+
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get -y install nodejs
+
+#Diva
+RUN mkdir -p /var/www/html
+COPY ./ProjectD /var/www/html
+
+#Node.js
+WORKDIR "/var/www/html/script"
+#johnny-five express http socket.io fs
+RUN npm install
+
+EXPOSE 80
+USER root
+
+WORKDIR "/"
+RUN echo '#!/bin/bash \nchmod 666 /dev/ttyACM0 \nphp -S 0.0.0.0:80 & \nchmod -R 777 /var/www/html \nsleep 5 \ncd /var/www/html/script/ \nnode node-arduino.js ' >> /init.sh
+RUN chmod 777 init.sh
+
+WORKDIR /var/www/html
+CMD /init.sh
+
+# docker run -t -i --device=/dev/ttyACM0 -p 8000:80 diva
+# docker run -ti --privileged --device=/dev/ttyACM0 -p 8000:80 diva

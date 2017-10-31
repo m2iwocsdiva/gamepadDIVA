@@ -1,0 +1,29 @@
+# ProjectD
+
+FROM node:7.7.2-alpine
+
+# INSTALL base
+RUN apk update
+RUN apk add apache2
+
+#Diva
+#RUN mkdir -p /var/www/html
+COPY ./ProjectD /var/www/html
+
+#Node.js
+WORKDIR "/var/www/html/script"
+#johnny-five express http socket.io fs
+RUN npm install
+
+EXPOSE 80
+USER root
+
+WORKDIR "/"
+RUN echo -e '#!/bin/sh \nchmod 666 /dev/ttyACM0 \nnode script/node-arduino.js' >> /init.sh
+RUN chmod 777 init.sh
+
+WORKDIR /var/www/html
+CMD /init.sh
+
+# docker run -t -i --device=/dev/ttyACM0 -p 8000:80 diva
+# docker run -ti --privileged --device=/dev/ttyACM0 -p 8800:80 diva
