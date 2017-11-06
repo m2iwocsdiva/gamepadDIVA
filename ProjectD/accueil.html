@@ -39,7 +39,7 @@
 			document.getElementById("menu3").style.display="block";
 		};
 		//var blob;
-		
+
 		function afficherBoutonLancement()
 		{
 			$("#start").html("Commencer");
@@ -49,16 +49,16 @@
 			$("#inputRessources").prop('disabled', false);
 			$("#start").click(lancerJeu);
 		}
-		
+
 		function lancerJeu()
 		{
 			//console.log(blob.mozFullPath);
-		
+
 			$( "#Doom" ).load( "game.html" );
 			//chargement(blob);
 		}
 		zip.workerScriptsPath = "lib/";
-		
+
 		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
 		function lireZip()
 		{
@@ -71,7 +71,7 @@
 			var blob = $("#inputRessources")[0].files[0]; // récupération du fichier sélectionné dans le formulaire
 			let fichierValide = false;
 			if ( blob.name.endsWith(".zip") ) // s'il s'agit bien d'une archive .zip
-			{		
+			{
 				zip.createReader(new zip.BlobReader(blob),function(reader)
 				{
 					reader.getEntries(function(entries)
@@ -79,11 +79,11 @@
 						if (entries.length) // s'il y a au moins un fichier dans l'archive
 						{
 							let entryBeatmap, entryAudio, entryVideo;
-							
+
 							//entries.forEach(function(entry) // pour chaque fichier contenu dans l'archive
 							//{
 								//if ( entry.filename.endsWith("beatmap.json")
-								
+
 							/* identification des différents fichiers de l'archive */
 							for ( var i = 0 ; i < entries.length ; i++ ) // pour chaque fichier contenu dans l'archive
 							{
@@ -94,26 +94,26 @@
 								else if ( entries[i].filename.endsWith(".mp4") )
 									entryVideo = entries[i];
 							}
-							
+
 							/* vérification de la présence du fichier beatmap.json, du son et de la vidéo */
 							if ( entryBeatmap != null && entryAudio != null && entryVideo != null )
-							{						
+							{
 								/* récupération du contenu des fichiers sous forme de Blobs */
 								$("#inputLabel").append(" .").delay(3000).queue(function (next) {
 								    $(this).append(".").delay(3000).queue(function (next) {
 								    	$(this).append('.');
 								    	next();
-								    });	
+								    });
 								    next();
-								});		
+								});
 								entryBeatmap.getData(new zip.BlobWriter(),function(blob1)
 								{
-									
+
 									jsonBeatmap = blob1;
 									console.log("jsonBeatmap accueil.html "+jsonBeatmap);
 									entryAudio.getData(new zip.BlobWriter(),function(blob2)
 									{
-										
+
 										blobAudio = blob2;
 										console.log("blobAudio accueil.html "+blobAudio);
 										entryVideo.getData(new zip.BlobWriter(),function(blob3)
@@ -121,11 +121,11 @@
 											blobVideo = blob3;
 											console.log("blobVideo accueil.html "+blobVideo);
 											fichierValide = true;
-							
+
 											reader.close(function() // après la lecture du contenu de l'archive
 											{
 												console.log(fichierValide);
-							
+
 												/* redirection vers le jeu si le fichier fourni est valide */
 												if ( fichierValide ){
 													afficherBoutonLancement();
@@ -135,7 +135,7 @@
 									});
 								});
 							}
-							else 
+							else
 							{
 								$("#start").html("Fichier non lisible");
 								$("#inputLabel").html("Selection");
@@ -147,14 +147,14 @@
 				},
 				function(error){});
 			}
-			else 
+			else
 				{
 					$("#start").html("Fichier non lisible");
 					$("#inputLabel").html("Selection");
 					$("#inputLabel").css("color", "white");
 					$("#inputRessources").prop('disabled', false);
 				}
-			
+
 			return fichierValide;
 		};
 	</script>

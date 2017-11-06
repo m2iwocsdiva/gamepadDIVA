@@ -78,7 +78,7 @@ function chargement() {
 			chimes[i].volume = volumeChime;
 		}
 
-		//Rajouter le ptemps de la chanson (audio.duration) 
+		//Rajouter le ptemps de la chanson (audio.duration)
 		audio.addEventListener('loadedmetadata', function() {
 			var duree = Math.round(audio.duration);
 			var nbMinutes = Math.trunc(duree / 60);
