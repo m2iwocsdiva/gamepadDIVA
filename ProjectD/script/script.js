@@ -135,9 +135,9 @@ function start() {
 		setInterval(isMissed, 1);
 	}, beatmap[0].t * 250 * 60 / bpm);
 
-	video.onended = function() { //Fin de la vidéo. Affichage de l'image
+	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
 		//alert("The video has ended"); //DEBUG
-	};
+	};*/
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 		$("#Doom").load("resultat.html");
@@ -169,8 +169,6 @@ function create(it, i) {
 			}, waitTime);
 
 		}
-
-
 	}
 }
 
@@ -262,27 +260,6 @@ function testinginput(key) {
 				break;
 		}
 	}
-	/*else{
-		switch(key){
-			case 90:
-				incorrect();
-				break;
-			case 83:
-				incorrect();
-				break;
-			case 68:
-				incorrect();
-				break;
-			case 81:
-				incorrect();
-				break;
-			case 32:
-				incorrect();
-				break;
-			default:
-				break;
-		}
-	}*/
 }
 
 function isCollide(a, b) {
@@ -336,11 +313,6 @@ function correct(objet) {
 
 function incorrect() {
 
-	//Test jq
-	/*$(message).text("FAIL");
-	$(message).show();
-	setTimeout(function(){ $(message).hide(); }, 500);*/
-
 	document.getElementById("message").innerHTML = "FAIL";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function() {
@@ -356,10 +328,6 @@ function incorrect() {
 
 function miss() {
 	id++;
-	//Test jq
-	/*$(message).text("MISS");
-	$(message).show();
-	setTimeout(function(){ $(message).hide(); }, 500);*/
 
 	document.getElementById("message").innerHTML = "MISS";
 	document.getElementById("message").style.visibility = "visible";
@@ -378,6 +346,6 @@ function miss() {
 function addScore(s) {
 
 	sc = parseInt($(score).text());
-	sc = sc + s /**multiplicateur*/ ;
+	sc = sc + s * multiplicateur ;
 	$(score).text(sc);
 }

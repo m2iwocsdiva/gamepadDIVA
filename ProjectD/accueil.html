@@ -78,7 +78,7 @@
 					{
 						if (entries.length) // s'il y a au moins un fichier dans l'archive
 						{
-							let entryBeatmap, entryAudio, entryVideo;
+							let entryBeatmap, entryAudio, entryVideo, entryImg;
 
 							//entries.forEach(function(entry) // pour chaque fichier contenu dans l'archive
 							//{
@@ -93,6 +93,8 @@
 									entryAudio = entries[i];
 								else if ( entries[i].filename.endsWith(".mp4") )
 									entryVideo = entries[i];
+								else if ( entries[i].filename.endsWith("fond.jpg") )
+									entryImg = entries[i];
 							}
 
 							/* vérification de la présence du fichier beatmap.json, du son et de la vidéo */
@@ -106,9 +108,20 @@
 								    });
 								    next();
 								});
+								
+								/* image */
+								if(entryImg != null){
+									entryImg.getData(new zip.BlobWriter(),function(blob0){
+										blobImg = blob0;
+										console.log("img accueil.html " + blobImg);
+										var link = window.URL.createObjectURL(blobImg);
+										fond(link);
+									});
+								}
+								/* */
+								
 								entryBeatmap.getData(new zip.BlobWriter(),function(blob1)
-								{
-
+								{	
 									jsonBeatmap = blob1;
 									console.log("jsonBeatmap accueil.html "+jsonBeatmap);
 									entryAudio.getData(new zip.BlobWriter(),function(blob2)

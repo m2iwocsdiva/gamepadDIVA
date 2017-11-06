@@ -24,10 +24,10 @@
 
 	<script>
 		$( "#Doom" ).load( "accueil.html" );
-		function fond(){
-				document.body.style.backgroundImage="url(images/fond.png)";
+		function fond(url){
+				document.body.style.backgroundImage="url('" + url+ "')";
 		}
-		fond();	
+		fond('images/fond.png');	
 		document.body.onkeyup = function(e){	
 			testinginput(e.keyCode);
 		}
