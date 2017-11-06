@@ -101,7 +101,18 @@ li.bouton:hover::after{
 #menu3{
 	display:none;
 }
-
+#resultat.menu{
+	margin-left:33vw;
+}
+.twitter{
+	margin-left:14vw;
+}
+#pMisses{
+	font-size: 200%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:47vw;
+}
 #fond { 
 	border-top: 1vh solid white;
 	border-bottom: 1vh solid white;
