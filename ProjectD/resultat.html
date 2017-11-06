@@ -1,19 +1,25 @@
 
-	<div class=\"info\"></div>
+	<div class="info"></div>
 
-	<p id=\"pMisses\">Manqués : </p>
+	<p id="pMisses">Manqués : </p>
 
-	<span id=\"misses\"></span>
+	<span id="misses"></span>
 
-	<a href="https://twitter.com/share" class="twitter-share-button" data-text="Un super jeu" data-size="large" data-hashtags="ProjectD" data-dnt="true">Tweet</a>
+		
+	<ul class="menu" id="resultat">
+		<li class="bouton"><a onclick="doFunction();">Retour a l'accueil</a></li>
+		<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Un super jeu" data-size="large" data-hashtags="ProjectD" data-dnt="true">Tweet</a></li>
+	</ul>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-	<input id="clickMe" type="button" value="Retour accueil" onclick="doFunction();" />
 
 	<script>
 
 		function doFunction(){
 			$( "#Doom" ).load( "accueil.html" );
 		}
+		function fond(){
+				document.body.style.backgroundImage="url(images/fond.png)";
+		}
+		fond();
 	</script>
 

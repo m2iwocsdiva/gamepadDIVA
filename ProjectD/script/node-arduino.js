@@ -49,8 +49,6 @@ board.on("ready", function() {
 
             client.emit('rgb', data);
             client.broadcast.emit('rgb', data);
-
-            fs.createReadStream('my-tarfile.tar').pipe(tar.extract('./tar-gz-files'))
       });
 
       var joystick = new five.Joystick({
@@ -61,7 +59,7 @@ board.on("ready", function() {
 
       joystick.on("change", function() {
 
-	//console.log("x="+this.x ,"y="+this.y);	
+	//console.log("x="+this.x ,"y="+this.y);
 
         // Gauche
         if(this.x <= -0.8) {
