@@ -9,9 +9,7 @@
 		<script src="lib/jquery.min.js"></script>
 		<script src="lib/zip.js"></script>
 		<script src="lib/zip-ext.js"></script>
-
-		<!-- include the client socket library-->
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    	<script src="lib/socket.io.js"></script>
 
 		<script src="script/variables.js"></script>
 		<script src="script/resultat.js"></script>
@@ -24,10 +22,13 @@
 
 	<script>
 		$( "#Doom" ).load( "accueil.html" );
+		
 		function fond(url){
 				document.body.style.backgroundImage="url('" + url+ "')";
 		}
-		fond('images/fond.png');	
+		
+		fond('images/fond.png');
+			
 		document.body.onkeyup = function(e){	
 			testinginput(e.keyCode);
 		}

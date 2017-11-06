@@ -1,9 +1,3 @@
-/*
-	author: Julien SAUTEREAU
-	job: Developer
-	level: M2 iWOCS
-*/
-
 "use strict";
 
 // DEBUG
