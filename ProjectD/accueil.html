@@ -99,21 +99,22 @@
 							if ( entryBeatmap != null && entryAudio != null && entryVideo != null )
 							{
 								/* récupération du contenu des fichiers sous forme de Blobs */
-								$("#inputLabel").append(" .").delay(3000).queue(function (next) {
-								    $(this).append(".").delay(3000).queue(function (next) {
+								$("#inputLabel").append(" .").delay(2500).queue(function (next) {
+								    $(this).append(".").delay(2500).queue(function (next) {
 								    	$(this).append('.');
 								    	next();
 								    });
 								    next();
 								});
-								
+								link = "image/fond.png";
 								/* image */
 								if(entryImg != null){
 									entryImg.getData(new zip.BlobWriter(),function(blob0){
 										blobImg = blob0;
 										console.log("img accueil.html " + blobImg);
-										var link = window.URL.createObjectURL(blobImg);
+										link = window.URL.createObjectURL(blobImg);
 										fond(link);
+
 									});
 								}
 								/* */
