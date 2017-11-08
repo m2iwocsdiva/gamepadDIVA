@@ -1,14 +1,12 @@
 # Projet Gamepad Diva
 
-**ajouter capture d'écran représentative du jeu**
+![Illustration du projet Gamepad Diva](illustration.png "Illustration du projet Gamepad Diva")
 
 ## Présentation
 
 Le projet proposé ici est une reproduction du jeu [Project Diva](https://fr.wikipedia.org/wiki/Hatsune_Miku:_Project_DIVA), un jeu de rythme édité par Sega. L'objectif est de valider des cibles qui défilent sur l'écran, en suivant le rythme imposé par une musique.
 
 ## Installation
-
-**à vérifier**
 
 1. Se rendre dans un répertoire quelconque
 2. Cloner le projet hébergé sur GitHub :  
