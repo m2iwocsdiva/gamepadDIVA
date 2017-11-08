@@ -5,6 +5,8 @@ var iteration = 0;
 var miss = 0;
 var waitTime;
 
+var blocker=0;
+
 /* Options */
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
@@ -213,46 +215,47 @@ function deleteinput(i) {
 function testinginput(key) {
 	var b1 = document.getElementById("check");
 	var b2 = document.getElementById(id).firstChild;
-
-	if (isCollide(b1, b2)) {
-		switch (key) {
-			case 90:
-				if (b2.classList.contains("arrow-up")) {
-					correct(b2);
-				} else {
-					incorrect();
-				}
-				break;
-			case 83:
-				if (b2.classList.contains("arrow-down")) {
-					correct(b2);
-				} else {
-					incorrect();
-				}
-				break;
-			case 68:
-				if (b2.classList.contains("arrow-right")) {
-					correct(b2);
-				} else {
-					incorrect();
-				}
-				break;
-			case 81:
-				if (b2.classList.contains("arrow-left")) {
-					correct(b2);
-				} else {
-					incorrect();
-				}
-				break;
-			case 32:
-				if (b2.classList.contains("push")) {
-					correct(b2);
-				} else {
-					incorrect();
-				}
-				break;
-			default:
-				break;
+	if(blocker==0){
+		if (isCollide(b1, b2)) {
+			switch (key) {
+				case 90:
+					if (b2.classList.contains("arrow-up")) {
+						correct(b2);
+					} else {
+						incorrect();
+					}
+					break;
+				case 83:
+					if (b2.classList.contains("arrow-down")) {
+						correct(b2);
+					} else {
+						incorrect();
+					}
+					break;
+				case 68:
+					if (b2.classList.contains("arrow-right")) {
+						correct(b2);
+					} else {
+						incorrect();
+					}
+					break;
+				case 81:
+					if (b2.classList.contains("arrow-left")) {
+						correct(b2);
+					} else {
+						incorrect();
+					}
+					break;
+				case 32:
+					if (b2.classList.contains("push")) {
+						correct(b2);
+					} else {
+						incorrect();
+					}
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
@@ -314,20 +317,22 @@ function correct(objet) {
 }
 
 function incorrect() {
+		blocker=1;
+		console.log(blocker);
+		setTimeout(function(){blocker=0;console.log(blocker);},300);
+		document.getElementById("message").innerHTML = "FAIL";
+		document.getElementById("message").style.visibility = "visible";
+		setTimeout(function() {
+			document.getElementById("message").style.visibility = "hidden";
+		}, 500);
+		multiplicateur = 1;
+		miss++;
+		$("#logLED").load("http://localhost:8000/led/on-red");
 
-	document.getElementById("message").innerHTML = "FAIL";
-	document.getElementById("message").style.visibility = "visible";
-	setTimeout(function() {
-		document.getElementById("message").style.visibility = "hidden";
-	}, 500);
-	multiplicateur = 1;
-    miss++;
-	$("#logLED").load("http://localhost:8000/led/on-red");
-
-	clearTimeout(timeout);
-	timeout = setTimeout(function() {
-		$("#logLED").load("http://localhost:8000/led/off");
-	}, timerLED);
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+			$("#logLED").load("http://localhost:8000/led/off");
+		}, timerLED);
 }
 
 function missed() {
@@ -338,7 +343,7 @@ function missed() {
 		document.getElementById("message").style.visibility = "hidden";
 	}, 500);
 	multiplicateur = 1;
-    miss++;
+	miss++;
 	$("#logLED").load("http://localhost:8000/led/on-grey");
 	clearTimeout(timeout);
 
