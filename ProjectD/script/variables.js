@@ -1,4 +1,3 @@
-//var blob;
 
 var jsonBeatmap;
 var blobAudio;

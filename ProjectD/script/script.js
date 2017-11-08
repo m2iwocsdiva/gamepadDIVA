@@ -17,12 +17,12 @@ var audio;
 var video;
 
 // Timer à 2 secondes
-let timer = 2000;
+var timerLED = 2000;
 
 // On initialise un timeout de base
-let timeout = setTimeout(function() {
+var timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 
 var chimes = new Array();
 var cptChime = 0;
@@ -86,9 +86,9 @@ function chargement() {
 
 		//Rajouter le temps de la chanson (audio.duration)
 		audio.addEventListener('loadedmetadata', function() {
-			var duree = Math.round(audio.duration);
-			var nbMinutes = Math.trunc(duree / 60);
-			var nbSecondes = duree % 60;
+			let duree = Math.round(audio.duration);
+			let nbMinutes = Math.trunc(duree / 60);
+			let nbSecondes = duree % 60;
 			$("#duree").html(nbMinutes + ":" + (nbSecondes < 10 ? "0" : "") + nbSecondes);
 		});
 
@@ -106,7 +106,7 @@ function chargement() {
 
 	}).done(function() {
 
-		//$("body").css("background-image", "none");
+		$("body").css("background-image", "none");
 
 		start();
 
@@ -131,10 +131,20 @@ function start() {
 	};*/
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
+
 		$("#Doom").load("resultat.html");
 		$("#misses").text(miss);
 		$("#correct").text(iteration);
 		$("#score").text(sc);
+
+		video.pause();
+		/*delete video;
+		delete audio;*/
+
+		/*document.body.removeChild(video);
+		document.body.removeChild(audio);*/
+		
+		$("#Doom").load("resultat.html");
 	};
 }
 
@@ -305,7 +315,7 @@ function correct(objet) {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 function incorrect() {
@@ -323,7 +333,7 @@ function incorrect() {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 function missed() {
@@ -342,7 +352,7 @@ function missed() {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 /* Score */

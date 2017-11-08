@@ -107,13 +107,13 @@
 								    });
 								    next();
 								});
-								link = "image/fond.png";
+								link = "images/fond.png";
 								/* image */
 								if(entryImg != null){
 									entryImg.getData(new zip.BlobWriter(),function(blob0){
 										blobImg = blob0;
 										console.log("img accueil.html " + blobImg);
-										let link = window.URL.createObjectURL(blobImg);
+										link = window.URL.createObjectURL(blobImg);
 										fond(link);
 
 									});
