@@ -1,32 +1,30 @@
+<p id="pMissesR">Manques :</p>
+<span id="missesR">0</span>
 
-	<div class="info"></div>
+<p id="pCorrectR">Reussis :</p>
+<span id="correctR">0</span>
 
-	<p id="pMissesR">Manqués :</p>
-	<span id="missesR">0</span>
+<p id="pScoreR">Score :</p>
+<span id="scoreR">0</span>
 
-	<p id="pCorrectR">Reussis :</p>
-	<span id="correctR">0</span>
-
-	<p id="pScoreR">Score :</p>
-	<span id="scoreR">0</span>
 		
-	<ul class="menu" id="resultat">
-		<li class="bouton"><a onclick="doFunction();">Retour a l'accueil</a></li>
-		<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Un super jeu" data-size="large" data-hashtags="ProjectD" data-dnt="true">Tweet</a></li>
-	</ul>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<ul class="menu" id="resultat">
+	<li class="bouton"><a onclick="doFunction();">Retour a l'accueil</a></li>
+	<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Un super jeu" data-size="large" data-hashtags="ProjectD" data-dnt="true">Tweet</a></li>
+</ul>
 
-	<script>
-		fond(link);
-		function doFunction(){
-			fond('images/fond.png');
-			$( "#Doom" ).load( "accueil.html" );
-		}
-		function afficherResultat() {
-			$("#misses").text(miss);
-			$("#correct").text(iteration);
-			$("#score").text(sc);
-		}
-		//afficherResultat();
-	</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+
+<script>
+	fond(link);
+	function doFunction(){
+		fond('images/fond.png');
+		$( "#Doom" ).load( "accueil.html" );
+	}
+		$("#missesR").html(missf);
+		$("#correctR").html(iterationf);
+		$("#scoreR").html(scoref);
+</script>
+
 

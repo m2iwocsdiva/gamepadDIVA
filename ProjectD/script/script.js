@@ -1,8 +1,9 @@
 var id = 1;
 var multiplicateur = 1;
-//var sc = 0;
+var sc = 0;
+var iteration = 0;
+var miss = 0;
 var waitTime;
-//var iteration = 0;
 
 /* Options */
 var playvideo = true;
@@ -122,16 +123,18 @@ function start() {
 	audio.play();
 
 	create(0, 1);
-	setTimeout(function() {
-		setInterval(isMissed(), 1);
-	}, beatmap[0].t * 250 * 60 / bpm);
+
+	setTimeout(function() {setInterval(function() {isMissed()}, 1);}, beatmap[0].t * 250 * 60 / bpm);
+	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
+		fond(link);
+	};*/
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 
 		$("#Doom").load("resultat.html");
-		$("#misses").text(miss);
-		$("#correct").text(iteration);
-		$("#score").text(sc);
+		missf=miss;
+		iterationf=iteration;
+		scoref=sc;
 
 		video.pause();
 		$("#Doom").load("resultat.html");
@@ -167,7 +170,6 @@ function create(it, i) {
 }
 
 function createinput(x, i) {
-
 	var input = document.createElement("div");
 	switch (x) {
 		case "u":
@@ -209,7 +211,6 @@ function deleteinput(i) {
 
 
 function testinginput(key) {
-
 	var b1 = document.getElementById("check");
 	var b2 = document.getElementById(id).firstChild;
 
@@ -266,7 +267,7 @@ function isCollide(a, b) {
 	}
 }
 
-function isMissed() {
+function isMissed() {    
 	if (document.getElementById(id) !== null) {
 		var rect1 = document.getElementById("check").getBoundingClientRect();
 		var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
@@ -324,7 +325,6 @@ function incorrect() {
 	$("#logLED").load("http://localhost:8000/led/on-red");
 
 	clearTimeout(timeout);
-
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
 	}, timerLED);
@@ -332,7 +332,6 @@ function incorrect() {
 
 function missed() {
 	id++;
-
 	document.getElementById("message").innerHTML = "MISS";
 	document.getElementById("message").style.visibility = "visible";
 	setTimeout(function() {
@@ -341,7 +340,6 @@ function missed() {
 	multiplicateur = 1;
     miss++;
 	$("#logLED").load("http://localhost:8000/led/on-grey");
-
 	clearTimeout(timeout);
 
 	timeout = setTimeout(function() {

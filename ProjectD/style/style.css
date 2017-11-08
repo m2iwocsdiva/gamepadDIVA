@@ -259,13 +259,13 @@ li.bouton:hover::after{
 	);
 }
 
-.arrow-right { -webkit-transform: rotateZ(0deg); /*margin-top:-2vh;*/ }
+.arrow-right { -webkit-transform: rotateZ(0deg); }
 
-.arrow-left { -webkit-transform: rotateZ(180deg); /*margin-top:2vh;*/ }
+.arrow-left { -webkit-transform: rotateZ(180deg); }
 
-.arrow-up { -webkit-transform: rotateZ(270deg); /*margin-top:-5vh;*/ }
+.arrow-up { -webkit-transform: rotateZ(270deg); }
 
-.arrow-down { -webkit-transform: rotateZ(90deg); /*margin-top:5vh;*/ }
+.arrow-down { -webkit-transform: rotateZ(90deg); }
 
 /* A modif ? */
 .push{
