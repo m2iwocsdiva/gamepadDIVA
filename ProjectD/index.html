@@ -12,17 +12,19 @@
     	<script src="lib/socket.io.js"></script>
 
 		<script src="script/variables.js"></script>
-		<script src="script/resultat.js"></script>
 	</head>
 	<body>
 		<div id="Doom">
-			Doom ^^
+			Doom
 		</div>
 	</body>
 
 	<script>
 		$( "#Doom" ).load( "accueil.html" );
-		
+
+		volumeSong = 1;
+		volumeChime = 0.6;
+
 		function fond(url){
 				document.body.style.backgroundImage="url('" + url+ "')";
 		}
