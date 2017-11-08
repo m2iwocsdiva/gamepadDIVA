@@ -89,9 +89,9 @@ function chargement() {
 
 		//Rajouter le temps de la chanson (audio.duration)
 		audio.addEventListener('loadedmetadata', function() {
-			var duree = Math.round(audio.duration);
-			var nbMinutes = Math.trunc(duree / 60);
-			var nbSecondes = duree % 60;
+			let duree = Math.round(audio.duration);
+			let nbMinutes = Math.trunc(duree / 60);
+			let nbSecondes = duree % 60;
 			$("#duree").html(nbMinutes + ":" + (nbSecondes < 10 ? "0" : "") + nbSecondes);
 		});
 
@@ -109,7 +109,7 @@ function chargement() {
 
 	}).done(function() {
 
-		//$("body").css("background-image", "none");
+		$("body").css("background-image", "none");
 
 		start();
 
@@ -117,13 +117,6 @@ function chargement() {
 		console.log("error"); //erreur
 	});
 
-}
-
-function afficherResultat() {
-	$("#misses").html(miss);
-	$("#correct").html(iteration);
-	$("#score").html(sc);
-	console.log('a');
 }
 
 function start() {
@@ -141,9 +134,14 @@ function start() {
 	};*/
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-		afficherResultat();
+		video.pause();
+		/*delete video;
+		delete audio;*/
+
+		/*document.body.removeChild(video);
+		document.body.removeChild(audio);*/
+		
 		$("#Doom").load("resultat.html");
-		//afficherResultat();
 	};
 }
 
