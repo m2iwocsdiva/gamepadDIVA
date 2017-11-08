@@ -20,12 +20,12 @@ var audio;
 var video;
 
 // Timer à 2 secondes
-let timer = 2000;
+var timerLED = 2000;
 
 // On initialise un timeout de base
-let timeout = setTimeout(function() {
+var timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 
 var chimes = new Array();
 var cptChime = 0;
@@ -314,7 +314,7 @@ function correct(objet) {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 function incorrect() {
@@ -332,7 +332,7 @@ function incorrect() {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 function miss() {
@@ -351,7 +351,7 @@ function miss() {
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, timer);
+	}, timerLED);
 }
 
 /* Score */
