@@ -17,16 +17,16 @@
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 	<script>
-		//fond(link);
+		fond(link);
 		function doFunction(){
 			fond('images/fond.png');
 			$( "#Doom" ).load( "accueil.html" );
 		}
-		function afficherResultat(nbMisses) {
-			$("#misses").html(nbMisses);
-			$("#correct").html(iteration);
-			$("#score").html(sc);
-			alert('a');
+		function afficherResultat() {
+			$("#misses").text(miss);
+			$("#correct").text(iteration);
+			$("#score").text(sc);
 		}
+		//afficherResultat();
 	</script>
 
