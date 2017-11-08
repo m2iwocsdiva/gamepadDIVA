@@ -3,9 +3,9 @@ var jsonBeatmap;
 var blobAudio;
 var blobVideo;
 var link;
-var sc;
-var iteration;
-var miss;
+var scoref;
+var iterationf;
+var missf;
 
 var volumeSong;
 var volumeChime;
