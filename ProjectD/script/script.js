@@ -18,6 +18,15 @@ var bpm;
 var audio;
 var video;
 
+let timer = 2000;
+
+console.log("TIMER START");
+let timeout = setTimeout(function() {
+		$("#logLED").load("http://localhost:8000/led/off");
+	}, timer);
+
+let etatLED = "NONE";
+
 var chimes = new Array();
 var cptChime = 0;
 
@@ -305,10 +314,14 @@ function correct(objet) {
 	multiplicateur++;
 
 	$("#logLED").load("http://localhost:8000/led/on-green");
-	setTimeout(function() {
-		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
 
+	console.log("VERT");
+	clearTimeout(timeout);
+
+	timeout = setTimeout(function() {
+		$("#logLED").load("http://localhost:8000/led/off");
+		console.log("TIMEOUT");
+	}, timer);
 }
 
 function incorrect() {
@@ -321,9 +334,14 @@ function incorrect() {
 	multiplicateur = 1;
 
 	$("#logLED").load("http://localhost:8000/led/on-red");
-	setTimeout(function() {
+
+	console.log("ROUGE");
+	clearTimeout(timeout);		
+
+	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
+		console.log("TIMEOUT");
+	}, timer);
 }
 
 function miss() {
@@ -337,9 +355,14 @@ function miss() {
 	multiplicateur = 1;
 
 	$("#logLED").load("http://localhost:8000/led/on-grey");
-	setTimeout(function() {
+	
+	console.log("BLEU");
+	clearTimeout(timeout);
+	
+	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
+		console.log("TIMEOUT");
+	}, timer);
 }
 
 /* Score */
