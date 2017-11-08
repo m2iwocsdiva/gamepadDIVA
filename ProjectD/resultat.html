@@ -22,11 +22,11 @@
 			fond('images/fond.png');
 			$( "#Doom" ).load( "accueil.html" );
 		}
-		function afficherResultat(nbMisses) {
-			$("#misses").html(nbMisses);
-			$("#correct").html(iteration);
-			$("#score").html(sc);
-			alert('a');
+		function afficherResultat() {
+			$("#misses").text(miss);
+			$("#correct").text(iteration);
+			$("#score").text(sc);
 		}
+		//afficherResultat();
 	</script>
 

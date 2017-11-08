@@ -1,6 +1,3 @@
-/*import {volumeSong} from 'variable';
-import {volumeChime} from 'variable';*/
-
 var id = 1;
 var multiplicateur = 1;
 //var sc = 0;
@@ -126,10 +123,17 @@ function start() {
 
 	create(0, 1);
 	setTimeout(function() {
-		setInterval(isMissed, 1);
+		setInterval(isMissed(), 1);
 	}, beatmap[0].t * 250 * 60 / bpm);
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
+
+		$("#Doom").load("resultat.html");
+		$("#misses").text(miss);
+		$("#correct").text(iteration);
+		$("#score").text(sc);
+
+		video.pause();
 		$("#Doom").load("resultat.html");
 	};
 }
@@ -268,7 +272,7 @@ function isMissed() {
 		var rect2 = document.getElementById(id).firstChild.getBoundingClientRect();
 		var hitpoint1 = (rect1.left + rect1.right) / 2;
 		var hitpoint2 = (rect2.left + rect2.right) / 2;
-		if (hitpoint1 - tolerance > hitpoint2) miss();
+		if (hitpoint1 - tolerance > hitpoint2) missed();
 	}
 }
 
@@ -326,7 +330,7 @@ function incorrect() {
 	}, timerLED);
 }
 
-function miss() {
+function missed() {
 	id++;
 
 	document.getElementById("message").innerHTML = "MISS";
