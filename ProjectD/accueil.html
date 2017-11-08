@@ -55,6 +55,7 @@
 			$( "#Doom" ).load( "game.html" );
 			//chargement(blob);
 		}
+
 		zip.workerScriptsPath = "lib/";
 
 		/* lecture de l'archive .zip de ressources fournie par l'utilisateur */
@@ -112,7 +113,7 @@
 									entryImg.getData(new zip.BlobWriter(),function(blob0){
 										blobImg = blob0;
 										console.log("img accueil.html " + blobImg);
-										link = window.URL.createObjectURL(blobImg);
+										let link = window.URL.createObjectURL(blobImg);
 										fond(link);
 
 									});
