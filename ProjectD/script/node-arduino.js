@@ -1,10 +1,8 @@
-"use strict";
-
 // DEBUG
-process.on('unhandledRejection', (reason, p) => {
+/*process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
   // application specific logging, throwing an error, or other logic here
-});
+});*/
 
 var five = require("johnny-five"),
   board = new five.Board(),
@@ -99,23 +97,24 @@ app.get('/led/:mode', function (req, res) {
     var status = "OK";
     switch(req.params.mode) {
       case "on-red":
-        ledMulti.on();
 	ledMulti.color("#AA0000");
+	ledMulti.on();
         break;
       case "off":
         ledMulti.off();
         break;
       case "on-green":
-	ledMulti.on();
 	ledMulti.color("#00AA00");
+	ledMulti.on();
 	break;
       case "on-grey":
-	ledMulti.on();
 	ledMulti.color("#888888");
+	ledMulti.on();
 	break;
-     /*case "blink":
-       led.blink();
-       break;*/
+     case "blink":
+       ledMulti.color("#00A00");
+       ledMulti.blink();
+       break;
      case "stop":
        led.stop();
        break;

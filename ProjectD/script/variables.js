@@ -8,4 +8,5 @@ var sc;
 var iteration;
 var miss;
 
-var a = 3;
+var volumeSong;
+var volumeChime;

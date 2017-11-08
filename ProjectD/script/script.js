@@ -1,3 +1,6 @@
+/*import {volumeSong} from 'variable';
+import {volumeChime} from 'variable';*/
+
 var id = 1;
 var multiplicateur = 1;
 //var sc = 0;
@@ -5,8 +8,6 @@ var waitTime;
 //var iteration = 0;
 
 /* Options */
-var volumeSong = 0;
-var volumeChime = 0.6;
 var playvideo = true;
 var pathchime = "audio/chimes/clap.mp3";
 var timerTaverse = 3000;
@@ -17,6 +18,14 @@ var beatmap;
 var bpm;
 var audio;
 var video;
+
+// Timer à 2 secondes
+let timer = 2000;
+
+// On initialise un timeout de base
+let timeout = setTimeout(function() {
+		$("#logLED").load("http://localhost:8000/led/off");
+	}, timer);
 
 var chimes = new Array();
 var cptChime = 0;
@@ -41,14 +50,14 @@ function chargement() {
 	var url = window.URL.createObjectURL(jsonBeatmap);
 	var urlVideo = window.URL.createObjectURL(blobVideo);
 	var urlAudio = window.URL.createObjectURL(blobAudio);
-	console.log("url : " + url);
+	//console.log("url : " + url);
 
 	//var path = "";
 
-	blobVideo.onload = function() {
+	/*blobVideo.onload = function() {
 
 		console.log("Vidéo chargé");
-	};
+	};*/
 
 	// NOTES :
 	// transmission du fichier beatmap.js fonctionne
@@ -70,7 +79,7 @@ function chargement() {
 		audio.src = urlAudio;
 		audio.volume = volumeSong;
 
-		/* Chime */ //Verifier si il n'y en a pas un dasn le pack et le proposer
+		/* Chime */
 
 		for (var i = 0; i < 10; i++) { //TODO Ajuster et ajouter variable
 			chimes[i] = document.createElement("AUDIO");
@@ -78,7 +87,7 @@ function chargement() {
 			chimes[i].volume = volumeChime;
 		}
 
-		//Rajouter le ptemps de la chanson (audio.duration)
+		//Rajouter le temps de la chanson (audio.duration)
 		audio.addEventListener('loadedmetadata', function() {
 			var duree = Math.round(audio.duration);
 			var nbMinutes = Math.trunc(duree / 60);
@@ -91,8 +100,7 @@ function chargement() {
 			video = document.createElement("video");
 			video.src = urlVideo;
 			video.preload = "";
-			//video.src = path + "/" + data.Video;
-			video.muted = false;
+			video.muted = true;
 			video.type = "video/mp4";
 			if (data.loop === true) video.loop = true;
 
@@ -101,9 +109,7 @@ function chargement() {
 
 	}).done(function() {
 
-		//Enlever l'écran de chargement
-		//Verifier si les éléments sont bien charger ?
-		$("body").css("background-image", "none");
+		//$("body").css("background-image", "none");
 
 		start();
 
@@ -130,9 +136,9 @@ function start() {
 		setInterval(isMissed, 1);
 	}, beatmap[0].t * 250 * 60 / bpm);
 
-	video.onended = function() { //Fin de la vidéo. Affichage de l'image
+	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
 		fond(link);
-	};
+	};*/
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 		afficherResultat();
@@ -303,10 +309,12 @@ function correct(objet) {
 	multiplicateur++;
 
 	$("#logLED").load("http://localhost:8000/led/on-green");
-	setTimeout(function() {
-		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
 
+	clearTimeout(timeout);
+
+	timeout = setTimeout(function() {
+		$("#logLED").load("http://localhost:8000/led/off");
+	}, timer);
 }
 
 function incorrect() {
@@ -319,9 +327,12 @@ function incorrect() {
 	multiplicateur = 1;
     miss++;
 	$("#logLED").load("http://localhost:8000/led/on-red");
-	setTimeout(function() {
+
+	clearTimeout(timeout);
+
+	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
+	}, timer);
 }
 
 function miss() {
@@ -335,9 +346,12 @@ function miss() {
 	multiplicateur = 1;
     miss++;
 	$("#logLED").load("http://localhost:8000/led/on-grey");
-	setTimeout(function() {
+
+	clearTimeout(timeout);
+
+	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-	}, 200);
+	}, timer);
 }
 
 /* Score */
