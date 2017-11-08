@@ -123,15 +123,9 @@ function chargement() {
 }
 
 function afficherResultat(nbMisses) {
-	$("#fond, #message, audio, video").remove();
-
-	$("body").append("<div class=\"info\"></div>");
-
-	/* affichage du nombre de cibles manquées */
-
-	$(".info").append("<p id=\"pMisses\">Manqués : </p>");
-	$("#pManques").append("<span id=\"misses\"></span>");
 	$("#misses").html(nbMisses);
+	$("#correct").html(iteration);
+	$("#score").html(sc);
 }
 
 function start() {
@@ -144,12 +138,13 @@ function start() {
 		setInterval(isMissed, 1);
 	}, beatmap[0].t * 250 * 60 / bpm);
 
-	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
-		//alert("The video has ended"); //DEBUG
-	};*/
+	video.onended = function() { //Fin de la vidéo. Affichage de l'image
+		fond(link);
+	};
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 		$("#Doom").load("resultat.html");
+		afficherResultat();
 	};
 }
 
@@ -311,6 +306,7 @@ function correct(objet) {
 		document.getElementById("message").style.visibility = "hidden";
 	}, 500);
 	addScore(1);
+	iteration++;
 	multiplicateur++;
 
 	$("#logLED").load("http://localhost:8000/led/on-green");
