@@ -18,6 +18,7 @@ Le projet proposé ici est une reproduction du jeu [Project Diva](https://fr.wik
 `docker build -t diva .`
 5. Lancer l'image Docker :  
 `docker run -ti --privileged --device=/dev/ttyACM0 -p 8001:80 -p 3000:3000 -p 8000:8000 diva`
+6. Accéder à l'application dans un navigateur, à l'adresse [http://localhost:8001/](http://localhost:8001/)
 
 ## Schéma électronique
 
