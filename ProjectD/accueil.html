@@ -7,13 +7,13 @@
 		<li class="bouton"><a style="color:grey" id="start">Commencer</a></li>
 		<li class="bouton">
 			<input type="file" name="ressources" accept=".zip" id="inputRessources" class="file_selector"/>
-			<label tabindex="0" for="ressources" id="inputLabel" class="file_label">Selection</label>
+			<label tabindex="0" for="ressources" id="inputLabel" class="file_label">Selection</label><span class="file_dot" id="inputDot"></span>
 		</li>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
 	</ul>
 	<ul class="menu" id="menu3">
-		<li class="bouton"><a onclick="">Volume - musique</a></li>
-		<li class="bouton"><a onclick="">Volume - action</a></li>
+		<li class="bouton"><a onclick="">Volume - musique<input id="sliderV" class="slider_son" type="range" min="0" max="100" value="50" onchange="slider1()"></li></a>
+		<li class="bouton"><a onclick="">Volume - action<input id="sliderA" class="slider_son" type="range" min="0" max="100" value="50" onchange="slider2()"></li></a>
 		<li class="bouton"><a onclick="jmenu1();">Retour</a></li>
 	</ul>
 
@@ -34,12 +34,25 @@
 		};
 		function jmenu3(){
 			document.getElementById("menu1").style.display="none";
+			$('#sliderV').val(volumeSong*100);console.log(volumeSong);
+			$('#sliderA').val(volumeChime*100);console.log(volumeChime);
 			document.getElementById("menu3").style.display="block";
 		};
-		//var blob;
+
+		function slider1(){
+    		volumeSong = $("#sliderV").val()/100;
+    		console.log(volumeSong);
+		};
+
+		function slider2(){
+    		volumeChime = $("#sliderA").val()/100;
+    		console.log(volumeChime);
+		};
 
 		function afficherBoutonLancement()
 		{
+			$("#inputDot").hide();
+			$("#inputDot").html("");
 			$("#start").html("Commencer");
 			$("#start").css("color", "white");
 			$("#inputLabel").css("color", "white");
@@ -100,7 +113,8 @@
 							if ( entryBeatmap != null && entryAudio != null && entryVideo != null )
 							{
 								/* récupération du contenu des fichiers sous forme de Blobs */
-								$("#inputLabel").append(" .").delay(2500).queue(function (next) {
+								$("#inputDot").show();
+								$("#inputDot").append(" .").delay(2500).queue(function (next) {
 								    $(this).append(".").delay(2500).queue(function (next) {
 								    	$(this).append('.');
 								    	next();

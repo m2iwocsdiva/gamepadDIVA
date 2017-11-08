@@ -191,6 +191,99 @@ li.bouton:hover::after{
 	text-decoration:none;
 }
 
+.file_dot{
+	color:grey;
+	text-decoration:none;
+}
+
+input[type=range].slider_son {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 3.45px 0;
+}
+input[type=range].slider_son:focus {
+  outline: none;
+}
+input[type=range].slider_son::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5.1px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5.2px #000000, 0px 0px 0px #0d0d0d;
+  background: #e6e6e6;
+  border-radius: 25px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+input[type=range].slider_son::-webkit-slider-thumb {
+  box-shadow: 0px 0px 4.5px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3.45px;
+}
+input[type=range].slider_son:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+input[type=range].slider_son::-moz-range-track {
+  width: 100%;
+  height: 5.1px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5.2px #000000, 0px 0px 0px #0d0d0d;
+  background: #e6e6e6;
+  border-radius: 25px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+input[type=range].slider_son::-moz-range-thumb {
+  box-shadow: 0px 0px 4.5px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range].slider_son::-ms-track {
+  width: 100%;
+  height: 5.1px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range].slider_son::-ms-fill-lower {
+  background: #cdcdcd;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 50px;
+  box-shadow: 0px 0px 5.2px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range].slider_son::-ms-fill-upper {
+  background: #e6e6e6;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 50px;
+  box-shadow: 0px 0px 5.2px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range].slider_son::-ms-thumb {
+  box-shadow: 0px 0px 4.5px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 5.1px;
+}
+input[type=range].slider_son:focus::-ms-fill-lower {
+  background: #e6e6e6;
+}
+input[type=range].slider_son:focus::-ms-fill-upper {
+  background: #ffffff;
+}
+
+
+
 .score {
 	font-size: 200% ;
 	font-weight: bold; 
