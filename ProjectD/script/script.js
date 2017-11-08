@@ -89,9 +89,9 @@ function chargement() {
 
 		//Rajouter le temps de la chanson (audio.duration)
 		audio.addEventListener('loadedmetadata', function() {
-			let duree = Math.round(audio.duration);
-			let nbMinutes = Math.trunc(duree / 60);
-			let nbSecondes = duree % 60;
+			var duree = Math.round(audio.duration);
+			var nbMinutes = Math.trunc(duree / 60);
+			var nbSecondes = duree % 60;
 			$("#duree").html(nbMinutes + ":" + (nbSecondes < 10 ? "0" : "") + nbSecondes);
 		});
 
@@ -129,18 +129,7 @@ function start() {
 		setInterval(isMissed, 1);
 	}, beatmap[0].t * 250 * 60 / bpm);
 
-	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
-		fond(link);
-	};*/
-
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-		video.pause();
-		/*delete video;
-		delete audio;*/
-
-		/*document.body.removeChild(video);
-		document.body.removeChild(audio);*/
-		
 		$("#Doom").load("resultat.html");
 	};
 }
@@ -287,13 +276,16 @@ function correct(objet) {
 
 	chimes[cptChime].play();
 	cptChime++;
+
 	if (cptChime == 10) {
 		cptChime = 0;
 	}
+
 	id++;
 	objet.parentElement.className += " good";
 	objet.className -= "box";
 	objet.className += " validate";
+
 	setTimeout(function() {
 		objet.remove();
 	}, 500);
@@ -302,6 +294,7 @@ function correct(objet) {
 	setTimeout(function() {
 		document.getElementById("message").style.visibility = "hidden";
 	}, 500);
+
 	addScore(1);
 	iteration++;
 	multiplicateur++;
@@ -357,5 +350,5 @@ function addScore(s) {
 
 	sc = parseInt($(score).text());
 	sc = sc + s * multiplicateur ;
-	$(score).text(miss);
+	$(score).text(sc);
 }
