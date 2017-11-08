@@ -18,14 +18,13 @@ var bpm;
 var audio;
 var video;
 
+// Timer à 2 secondes
 let timer = 2000;
 
-console.log("TIMER START");
+// On initialise un timeout de base
 let timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
 	}, timer);
-
-let etatLED = "NONE";
 
 var chimes = new Array();
 var cptChime = 0;
@@ -50,14 +49,14 @@ function chargement() {
 	var url = window.URL.createObjectURL(jsonBeatmap);
 	var urlVideo = window.URL.createObjectURL(blobVideo);
 	var urlAudio = window.URL.createObjectURL(blobAudio);
-	console.log("url : " + url);
+	//console.log("url : " + url);
 
 	//var path = "";
 
-	blobVideo.onload = function() {
+	/*blobVideo.onload = function() {
 
 		console.log("Vidéo chargé");
-	};
+	};*/
 
 	// NOTES :
 	// transmission du fichier beatmap.js fonctionne
@@ -311,12 +310,10 @@ function correct(objet) {
 
 	$("#logLED").load("http://localhost:8000/led/on-green");
 
-	console.log("VERT");
 	clearTimeout(timeout);
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-		console.log("TIMEOUT");
 	}, timer);
 }
 
@@ -331,12 +328,10 @@ function incorrect() {
 
 	$("#logLED").load("http://localhost:8000/led/on-red");
 
-	console.log("ROUGE");
-	clearTimeout(timeout);		
+	clearTimeout(timeout);
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-		console.log("TIMEOUT");
 	}, timer);
 }
 
@@ -351,13 +346,11 @@ function miss() {
 	multiplicateur = 1;
 
 	$("#logLED").load("http://localhost:8000/led/on-grey");
-	
-	console.log("BLEU");
+
 	clearTimeout(timeout);
-	
+
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
-		console.log("TIMEOUT");
 	}, timer);
 }
 
