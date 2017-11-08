@@ -1,10 +1,10 @@
 # Projet Gamepad Diva
 
+**ajouter capture d'écran représentative du jeu**
+
 ## Présentation
 
 Le projet proposé ici est une reproduction du jeu [Project Diva](https://fr.wikipedia.org/wiki/Hatsune_Miku:_Project_DIVA), un jeu de rythme édité par Sega. L'objectif est de valider des cibles qui défilent sur l'écran, en suivant le rythme imposé par une musique.
-
-**ajouter capture d'écran représentative du jeu**
 
 ## Installation
 
@@ -17,7 +17,7 @@ Le projet proposé ici est une reproduction du jeu [Project Diva](https://fr.wik
 4. Construire l'image Docker en utilisant le fichier Dockerfile :  
 `docker build .`
 5. Lancer l'image Docker :  
-`docker run`
+`docker run -ti --privileged --device=/dev/ttyACM0 -p 8001:80 -p 3000:3000 -p 8000:8000 diva`
 
 ## Schéma électronique
 
