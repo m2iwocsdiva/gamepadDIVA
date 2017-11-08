@@ -15,7 +15,7 @@ Le projet proposé ici est une reproduction du jeu [Project Diva](https://fr.wik
 `git clone https://github.com/m2iwocsdiva/gamepadDIVA.git`
 3. Se rendre dans le répertoire *gamepadDIVA* ainsi créé
 4. Construire l'image Docker en utilisant le fichier Dockerfile :  
-`docker build .`
+`docker build -t diva .`
 5. Lancer l'image Docker :  
 `docker run -ti --privileged --device=/dev/ttyACM0 -p 8001:80 -p 3000:3000 -p 8000:8000 diva`
 
