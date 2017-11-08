@@ -1,8 +1,8 @@
 var id = 1;
 var multiplicateur = 1;
-var sc = 0;
+//var sc = 0;
 var waitTime;
-var iteration = 0;
+//var iteration = 0;
 
 /* Options */
 var volumeSong = 0;
@@ -113,10 +113,11 @@ function chargement() {
 
 }
 
-function afficherResultat(nbMisses) {
-	$("#misses").html(nbMisses);
+function afficherResultat() {
+	$("#misses").html(miss);
 	$("#correct").html(iteration);
 	$("#score").html(sc);
+	console.log('a');
 }
 
 function start() {
@@ -134,8 +135,9 @@ function start() {
 	};
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
-		$("#Doom").load("resultat.html");
 		afficherResultat();
+		$("#Doom").load("resultat.html");
+		//afficherResultat();
 	};
 }
 
@@ -315,7 +317,7 @@ function incorrect() {
 		document.getElementById("message").style.visibility = "hidden";
 	}, 500);
 	multiplicateur = 1;
-
+    miss++;
 	$("#logLED").load("http://localhost:8000/led/on-red");
 	setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
@@ -331,7 +333,7 @@ function miss() {
 		document.getElementById("message").style.visibility = "hidden";
 	}, 500);
 	multiplicateur = 1;
-
+    miss++;
 	$("#logLED").load("http://localhost:8000/led/on-grey");
 	setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
@@ -343,5 +345,5 @@ function addScore(s) {
 
 	sc = parseInt($(score).text());
 	sc = sc + s * multiplicateur ;
-	$(score).text(sc);
+	$(score).text(miss);
 }

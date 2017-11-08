@@ -107,12 +107,49 @@ li.bouton:hover::after{
 .twitter{
 	margin-left:14vw;
 }
-#pMisses{
+
+#pMissesR{
 	font-size: 200%;
 	font-family: Cyberverse;
 	color:white;
 	margin-left:47vw;
 }
+
+#missesR{
+	font-size: 200%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:50vw;
+}
+
+#pCorrectR{
+	font-size: 200%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:47vw;
+}
+
+#correctR{
+	font-size: 200%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:50vw;
+}
+
+#pScoreR{
+	font-size: 200%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:47vw;
+}
+
+#scoreR{
+	font-size: 600%;
+	font-family: Cyberverse;
+	color:white;
+	margin-left:48vw;
+}
+
 #fond { 
 	border-top: 1vh solid white;
 	border-bottom: 1vh solid white;
@@ -157,7 +194,7 @@ li.bouton:hover::after{
 .score {
 	font-size: 200% ;
 	font-weight: bold; 
-	font-family: "Cursif";
+	font-family: "Cyberverse";
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -177,7 +214,7 @@ li.bouton:hover::after{
 .info, .liens {
 	font-size: 100%;
 	font-weight: bold; 
-	font-family: "Cursif";
+	font-family: "Cyberverse";
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -254,4 +291,3 @@ li.bouton:hover::after{
   	transition: width, linear 0.5s;
   	opacity:0;
 }
-

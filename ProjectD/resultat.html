@@ -1,14 +1,16 @@
 
 	<div class="info"></div>
 
-	<p id="pMisses">Manqués :</p>
+	<p id="pMissesR">Manqués :</p>
+	<span id="missesR">0</span>
 
-	<span id="misses"></span>
+	<p id="pCorrectR">Reussis :</p>
+	<span id="correctR">0</span>
 
+	<p id="pScoreR">Score :</p>
+	<span id="scoreR">0</span>
 		
 	<ul class="menu" id="resultat">
-		<li><span id="correct"></span></li>
-		<li><span id="score"></span></li>
 		<li class="bouton"><a onclick="doFunction();">Retour a l'accueil</a></li>
 		<li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Un super jeu" data-size="large" data-hashtags="ProjectD" data-dnt="true">Tweet</a></li>
 	</ul>
@@ -19,6 +21,12 @@
 		function doFunction(){
 			fond('images/fond.png');
 			$( "#Doom" ).load( "accueil.html" );
+		}
+		function afficherResultat(nbMisses) {
+			$("#misses").html(nbMisses);
+			$("#correct").html(iteration);
+			$("#score").html(sc);
+			alert('a');
 		}
 	</script>
 
