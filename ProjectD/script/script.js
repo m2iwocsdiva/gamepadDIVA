@@ -319,14 +319,13 @@ function correct(objet) {
 function incorrect() {
 		blocker=1;
 		console.log(blocker);
-		setTimeout(function(){blocker=0;console.log(blocker);},300);
+		setTimeout(function(){blocker=0;console.log(blocker);},800);
 		document.getElementById("message").innerHTML = "FAIL";
 		document.getElementById("message").style.visibility = "visible";
 		setTimeout(function() {
 			document.getElementById("message").style.visibility = "hidden";
 		}, 500);
 		multiplicateur = 1;
-		miss++;
 		$("#logLED").load("http://localhost:8000/led/on-red");
 
 		clearTimeout(timeout);
@@ -346,6 +345,7 @@ function missed() {
 	miss++;
 	$("#logLED").load("http://localhost:8000/led/on-grey");
 	clearTimeout(timeout);
+
 
 	timeout = setTimeout(function() {
 		$("#logLED").load("http://localhost:8000/led/off");
