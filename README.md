@@ -1,6 +1,6 @@
 # Projet Gamepad Diva
 
-![Illustration du projet Gamepad Diva](illustration.png "Illustration du projet Gamepad Diva")
+![Illustration du projet Gamepad Diva](images/illustration.png "Illustration du projet Gamepad Diva")
 
 ## Présentation
 
@@ -27,7 +27,7 @@ Ce jeu peut être utilisé avec les composants suivants, qui doivent être reli�
 * un bouton à activation ponctuelle
 * une résistance
 
-![Montage électronique du projet Gamepad Diva](montage.png "Montage électronique du projet Gamepad Diva")
+![Montage électronique du projet Gamepad Diva](images/montage.png "Montage électronique du projet Gamepad Diva")
 
 ## Utilisation
 
