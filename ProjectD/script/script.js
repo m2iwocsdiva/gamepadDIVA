@@ -133,12 +133,14 @@ function start() {
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 
+		
 		$("#Doom").load("resultat.html");
 		missf=miss;
 		iterationf=iteration;
 		scoref=sc;
 
 		video.pause();
+		$("video").remove();
 		$("#Doom").load("resultat.html");
 	};
 }
