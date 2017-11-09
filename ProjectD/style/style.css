@@ -67,6 +67,7 @@ a{
 	color:white;
 	padding-left:25%;
 	text-decoration:none;
+	cursor: pointer;
 }
 
 li.bouton:hover{
