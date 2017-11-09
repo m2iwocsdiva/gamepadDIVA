@@ -70,6 +70,7 @@ function chargement() {
 
 		//Rajouter nom de la chanson sur le chargement
 		$("#nom").html(data.Name);
+		nameSong = data.Name;
 
 		bpm = data.BPM;
 		beatmap = data.beatmap;
