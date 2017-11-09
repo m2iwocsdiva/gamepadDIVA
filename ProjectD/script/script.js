@@ -127,9 +127,10 @@ function start() {
 	create(0, 1);
 
 	setTimeout(function() {setInterval(function() {isMissed()}, 1);}, beatmap[0].t * 250 * 60 / bpm);
-	/*video.onended = function() { //Fin de la vidéo. Affichage de l'image
+	video.onended = function() { //Fin de la vidéo. Affichage de l'image
 		fond(link);
-	};*/
+		$("video").remove();
+	};
 
 	audio.onended = function() { //Fin de l'audio. Redirection sur l'écran de fin
 
@@ -139,9 +140,6 @@ function start() {
 		iterationf=iteration;
 		scoref=sc;
 
-		video.pause();
-		$("video").remove();
-		$("#Doom").load("resultat.html");
 	};
 }
 
